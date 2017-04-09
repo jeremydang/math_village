@@ -1,0 +1,10 @@
+*.pdf
+*.png
+*.docx
+*.exe
+*.TODO
+*.jpg
+*.svg
+*.log
+.sublime-project
+node_modules
