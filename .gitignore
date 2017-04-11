@@ -8,3 +8,8 @@
 *.log
 .sublime-project
 node_modules
+images
+fonts
+enviroment
+.gitignore
+

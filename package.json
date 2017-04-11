@@ -1,13 +1,11 @@
-
 {
-	  
   "name": "mathvillage",
   "version": "1.0.0",
   "description": "math web game platform for young kids",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "lite-server"
+    "start": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -30,5 +28,8 @@
   "homepage": "https://github.com/jeremydang/math_village#readme",
   "devDependencies": {
     "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "normalize.css": "^6.0.0"
   }
 }

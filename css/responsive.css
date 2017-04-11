@@ -1,0 +1,41 @@
+/* Landscape phone to portrait tablet */
+@media (max-width: 480px) { 
+
+	.navbar{
+		padding-top: 3px;
+	}
+
+	header {
+	  background: none;
+	}
+	.header{
+		margin-bottom: 45%;
+	}
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) { 
+
+	.navbar{
+		padding-top: 3px;
+	}
+
+	header {
+	  background: none;
+	}
+	.header{
+		margin-bottom: 40%;
+	}
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	header {
+	  background: none;
+	}
+	.header{
+		margin-bottom: 25%;
+	}
+  
+}
