@@ -8,7 +8,7 @@ html {
  top: 0;
  margin: 0px;
  padding: 0px;
- overflow-x: hidden;
+ overflow-x: hidden !important; 
  height: 100%;
  width: 100%;
 }
@@ -161,47 +161,12 @@ a:active{
 .margin-20 {
     margin-bottom: 20px !important;
 }
-.margin-30 {
-    margin-bottom: 30px !important;
-}
-.margin-40 {
-    margin-bottom: 40px !important;
-}
-.margin-50 {
-    margin-bottom: 50px !important;
-}
-.margin-60 {
-    margin-bottom: 60px !important;
-}
-.margin-70 {
-    margin-bottom: 70px !important;
-}
-.margin-80 {
-    margin-bottom: 80px !important;
-}
-.margin-90 {
-    margin-bottom: 90px !important;
-}
-.margin-100 {
-    margin-bottom: 100px !important;
-}
+
 
 /*-----------------Padding------------------*/
 
-.pad-xl {
-  padding-top: 200px;
-}
-
-.pad-lg {
-  padding-top: 160px;
-}
-
 .pad-sm {
-  padding-top: 100px;
-}
-
-.pad-xs {
-  padding-top: 30px;
+  padding-top: 90px;
 }
 
 .no-pad {
@@ -326,18 +291,17 @@ hr.line {
 .navbar {
     border: 0px solid rgba(0, 0, 0, 0);
     background: #0b1733;
-    width: 100%;
     min-height: 60px;
     position: fixed;
-    top: -100px;
+    top: -500px;
     transition: top 0.4s ease 0s;
-    padding: 10px 0 0 0;
+    padding: 6px 0 0 0;
 }
 
 .container-fluid .navbar-inverse{
-  padding: 30px 0 0 38%;
-  width: 100%;
+  padding: 25px 80px 0 0;
   background: #0b1733;
+  width: 100%;
 }
 
 .navbar.open {
@@ -349,7 +313,7 @@ hr.line {
     font-size: 1.2em;
     letter-spacing: 1px;
     font-weight: bold;
-    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -361,32 +325,18 @@ hr.line {
     color: #fedc32;
 }
 
+.navbar-inverse .navbar-nav > li > .active  {
+    background : transparent;
+    color: #fedc32;
+}
+
 .navbar-inverse .navbar-nav > li > .active:hover  {
     background : transparent;
 }
-.navbar-inverse .navbar-nav > li > .active  {
-    background : transparent;
-}
 
-.navbar-inverse .navbar-center > li > .active  {
-  color: #fedc32;
-}
-
-.navbar-inverse .navbar-nav:not(.navbar-center) > li > .active  {
-    padding-top: 7px;
-    padding-left: 0;
-    padding-right: 0;
-    border-top: 2.5px #ffffff solid;
-}
-
-.nav > li > a {
-    position: relative;
-    display: block;
-    padding: 10px 10px;
-}
-
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-    border-color: #4ec3cd;
+.navbar-inverse .navbar-collapse{
+    border-color: #fedc32;
+    text-align: right;
 }
 
 .navbar-inverse .navbar-toggle {
@@ -395,7 +345,7 @@ hr.line {
 
 .logo-menu img {
 	margin-top: 8px;
-  max-width: 50%;
+  width: 55%;
 }
 
 .logo-menu{
@@ -409,9 +359,8 @@ hr.line {
    ========================================================================== */
 
    header {
-     padding: 0 0 30px 10px;
-     background: url(../images/mainshape.png) no-repeat 55% 65%/81%;
-     width: 100%;
+     background: url(../images/mainshape.png) no-repeat 55% 75%;
+     background-size: 1200px 611px ;
      height: 100vh;
      overflow: hidden;
      position: relative;
@@ -420,11 +369,10 @@ hr.line {
    .header {
      position: absolute;
      bottom: 0;
-     width: 100%;
      left: 0;
      right: 0;
+     margin-bottom: 16%;
      margin-left: 1%;
-     margin-bottom: 14%;
    }
 
    .header-info .subtitle{
@@ -435,7 +383,7 @@ hr.line {
 
 
    .action .btn-primary {
-    max-width: 65%;
+     max-width: 70%;
    }
 
  /* ==========================================================================
@@ -448,28 +396,29 @@ hr.line {
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      padding-top: 23%;
-      width: 100%;
+      padding-top: 24%;
       height: 100vh;
       overflow: hidden;
-      margin-left: 15px;
     }
 
     .feature-1 .btn-primary{
-      max-width: 40%;
+      max-width: 45%;
     }
 
     .feature-2 img{
-      width: 100%;
+      width: 90%;
     }
 
+    .feature-2 .info {
+      margin: 40px 0 0 10px;
+    }
+
+    .feature-3 img{
+      width: 70%;
+    }
     .feature-3{
-      background: url(../images/screen3.png) no-repeat center 80%;
-      background-size: 40%;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      margin-left: 15px;
+      margin-left: 2%;
+      padding-top: 3%;
     }
 
     .feature-4 img{
@@ -479,10 +428,11 @@ hr.line {
     .feature-4 .info{
       padding-top: 50px;
       line-height: 1.33px;
+      text-align: left !important;
     }
 
     .feature-4 .btn-primary{
-      max-width: 65%;
+      width: 80%;
     }
 
     .action-box{
@@ -491,10 +441,8 @@ hr.line {
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      width: 100%;
       height: 100vh;
       overflow: hidden;
-      padding-left: 75px;
     }
 
     .box{
@@ -518,11 +466,15 @@ hr.line {
        ========================================================================== */
 
     footer .row{
-      padding : 30px 30px 30px 60px;
+      padding : 40px 60px 30px 60px;
+    }
+
+    footer img{
+      width: 30%;
+      min-width: 120px;
     }
 
     footer .social{
-      margin-top: 15px;
       color: #bbbbbb;
       font-size: 1.2em;
     }
@@ -530,5 +482,4 @@ hr.line {
     footer p {
       color: #bbbbbb;
       font-size: 1.2em;
-      margin-top: 14px;
     }

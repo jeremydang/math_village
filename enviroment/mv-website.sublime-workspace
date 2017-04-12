@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"nav",
+				"navbar"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"shadow",
+				"box-shadow"
+			],
+			[
+				"fadeIn",
+				"fadeInUp"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
 				"font-s",
 				"font-size"
 			],
@@ -55,7 +83,7 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/index.html",
 			"settings":
 			{
-				"buffer_size": 5096,
+				"buffer_size": 8259,
 				"line_ending": "Windows"
 			}
 		},
@@ -63,7 +91,15 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
 			"settings":
 			{
-				"buffer_size": 6484,
+				"buffer_size": 8268,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
+			"settings":
+			{
+				"buffer_size": 3601,
 				"line_ending": "Windows"
 			}
 		},
@@ -71,7 +107,7 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
 			"settings":
 			{
-				"buffer_size": 1802,
+				"buffer_size": 2198,
 				"line_ending": "Windows"
 			}
 		}
@@ -146,10 +182,12 @@
 	"expanded_folders":
 	[
 		"/E/SOFTWARE PROJECT 1/math_village",
+		"/E/SOFTWARE PROJECT 1/math_village/css",
 		"/E/SOFTWARE PROJECT 1/math_village/enviroment"
 	],
 	"file_history":
 	[
+		"/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/autoHeight.html",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/responsiveWidth.html",
 		"/E/web/landing page web/Snow - By Visual Soldiers/index.html",
@@ -203,7 +241,7 @@
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -217,6 +255,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"margin",
+			"pad-",
+			"}\n",
+			"right",
+			"ul",
+			"navbar-coll",
+			"navbar-form",
+			"fadeIn",
+			"lg",
+			"h2",
+			"div",
+			">\n",
 			"mvlogo.png",
 			"p",
 			"in",
@@ -270,7 +320,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -279,15 +329,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5096,
+						"buffer_size": 8259,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3171,
-								3171
+								7482,
+								7483
 							]
 						],
 						"settings":
@@ -295,13 +345,14 @@
 							"auto_complete": false,
 							"git_gutter_enabled": true,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": false,
+							"wrap_width": 0
 						},
 						"translation.x": 0.0,
-						"translation.y": 958.0,
+						"translation.y": 3460.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -310,15 +361,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6484,
+						"buffer_size": 8268,
 						"regions":
 						{
+							"mark":
+							{
+								"flags": 144,
+								"icon": "dot",
+								"regions":
+								[
+									[
+										6939,
+										6939
+									]
+								],
+								"scope": "mark"
+							}
 						},
 						"selection":
 						[
 							[
-								6478,
-								6478
+								8127,
+								8127
 							]
 						],
 						"settings":
@@ -329,27 +393,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7360.0,
+						"translation.y": 9127.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+					"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1802,
+						"buffer_size": 3601,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1244,
-								1244
+								1720,
+								1720
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1200.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2198,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1151,
+								1151
 							]
 						],
 						"settings":
@@ -361,10 +455,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 80.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
