@@ -82,54 +82,96 @@ $(document).ready(function(){
 //------------------------------------//
 //Login validation//
 //------------------------------------// 
+
 var loginForm = document.forms["login"];
 
-loginForm.onsubmit = function(event){
 
-  event.preventDefault(); 
+if (typeof loginForm !== "undefined") {
+  loginForm.onsubmit = function(event){
+  
+    event.preventDefault(); 
+  
+    var action = this.getAttribute("action"), 
+    method = this.getAttribute("method"); 
+  
+    var username = document.getElementById("username"),
+    password = document.getElementById("password"),
+    alertElement = document.getElementById("alert"),
+    errMess = "";
+  
+    if(username.value==""){
+  
+      errMess="Please enter a valid username";
+      displayErrMess(errMess,alertElement);
+  
+    }
+    else if(password.value==""){
+  
+      errMess="Please enter a valid password" ; 
+      displayErrMess(errMess,alertElement);
+  
+    }
+  
+    else{
+  
+      var data = new FormData(loginForm);
+  
+      var http = new XMLHttpRequest();
+      http.open(method,action,true);
+  
+      http.onload = function() {
+        if (http.status == 200) {
+        
+        }
+      };
+  
+      http.send(data);
+    } 
+  
+  };
+}
 
-  var action = this.getAttribute("action"), 
-  method = this.getAttribute("method"); 
-
-  var username = document.getElementById("username"),
-  password = document.getElementById("password"),
-  alertElement = document.getElementById("alert"),
-  errMess = "";
-
-
-  if(username.value==""){
-
-    errMess="Please enter a valid username";
-    displayErrMess(errMess,alertElement);
-
-  }
-  else if(password.value==""){
-
-    errMess="Please enter a valid password" ; 
-    displayErrMess(errMess,alertElement);
-
-  }
-
-  else{
-
-    var data = new FormData(loginForm);
-
-    var http = new XMLHttpRequest();
-    http.open(method,action,true);
-
-    http.onload = function() {
-      if (http.status == 200) {
-      
-
-      }
-    };
-
-    http.send(data);
-  } 
-
-};
 
 function displayErrMess(err,element){
   element.style.display="block";
   element.innerHTML= "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>" + " " + err;
 }
+
+//------------------------------------//
+//Signup//
+//------------------------------------// 
+
+$('.signup').find('input, textarea').on('blur focus', function (e) {
+  
+  var $this = $(this),
+      label = $this.prev('label');
+
+    if (e.type === 'focus') {
+
+      if (!label.hasClass('active')) {
+        label.addClass('active'); 
+      }
+    }  
+    else {
+      if( $this.val() === '' )
+      {
+        label.removeClass('active');
+      }
+    }
+
+});
+
+$('.tab a').on('click', function (e) {
+  
+  e.preventDefault();
+  
+  $(this).parent().addClass('active');
+  $(this).parent().siblings().removeClass('active');
+  
+  target = $(this).attr('href');
+
+  $('.tab-content > div').not(target).hide();
+  
+  $(target).fadeIn(600);
+  
+});

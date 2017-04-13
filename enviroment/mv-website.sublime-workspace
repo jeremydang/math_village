@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"i",
+				"important"
+			],
+			[
 				"nav",
 				"navbar"
 			],
@@ -18,10 +42,6 @@
 			[
 				"fadeIn",
 				"fadeInUp"
-			],
-			[
-				"margin",
-				"margin-bottom"
 			],
 			[
 				"padding",
@@ -80,10 +100,21 @@
 	"buffers":
 	[
 		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/index.html",
+			"file": "/E/SOFTWARE PROJECT 1/math_village/login.html",
 			"settings":
 			{
-				"buffer_size": 8259,
+				"buffer_size": 3741,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n	<meta charset=\"UTF-8\">\n	<title>Login | Math Village</title>\n	<meta name=\"keywords\" content=\"\">\n	<meta name=\"description\" content=\"\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n	<link href=\"images/favicon.png\" rel=\"shortcut icon\">\n\n	<!--styles-->\n	<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n	<link rel=\"stylesheet\" href=\"font-awesome/css/font-awesome.min.css\">\n	<link rel=\"stylesheet\" href=\"css/normalize.css\">\n	<link rel=\"stylesheet\" href=\"css/mainstyle.css\">\n	<link rel=\"stylesheet\" href=\"css/responsive.css\">\n\n	<!--font-google-->\n	<link href=\"https://fonts.googleapis.com/css?family=Arvo\" rel=\"stylesheet\">\n	<link href=\"https://fonts.googleapis.com/css?family=Montserrat:400,600,700\" rel=\"stylesheet\">\n</head>\n\n<body id=\"login\">\n	<div id=\"preloader\">\n	  <div id=\"status\">\n	  <img alt=\"logo\" src=\"images/mvlogo-min.png\">\n	  </div>\n	</div>\n\n    <div class=\"container-fluid no-pad\">\n	  <div class=\"nav navbar-inverse\" id=\"login\">\n	      <div class=\"navbar-header\">\n		      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n		        <span class=\"icon-bar\"></span>\n		        <span class=\"icon-bar\"></span>\n		        <span class=\"icon-bar\"></span>\n		      </button>\n		      <a class=\"logo-menu\" href=\"index.html\"><img src=\"images/mvlogo.png\" alt=\"Logo\"></a>\n		  </div>\n		  <div class=\"navbar-collapse collapse head\">\n	        <ul class=\"nav navbar-nav navbar-right\">\n	          <li><a href=\"index.html\">Home</a></li>\n	          <li><a href=\"about.html\" class=\"hidden-sm\">About</a></li>\n	          <li><a href=\"getstarted.html\">Get started</a></li>\n	          <li><a href=\"leaderboard.html\">Leaderboard</a></li>\n	          <li><a href=\"contact.html\">Contact</a></li>\n	        </ul>\n		  </div>\n	   </div>\n	</div>\n\n	<div class=\"signup\">\n	\n	      <ul class=\"tab-group\">\n	        <li class=\"tab active\"><a href=\"#idv\">Individual</a></li>\n	        <li class=\"tab\"><a href=\"#org\">Organization</a></li>\n	      </ul>\n	      \n	      <div class=\"tab-content\">\n	        <div id=\"idv\">   \n	          <h1>Sign Up for Free</h1>\n	          <form action=\"sigup.php\" method=\"post\" id=\"idv\">\n		          <div class=\"one-row\">\n		            <div class=\"field-wrap\">\n		              <label>\n		                First Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"firstname\" required autocomplete=\"off\"/>\n		            </div>\n		        \n		            <div class=\"field-wrap\">\n		              <label>\n		                Last Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"lastname\"required autocomplete=\"off\"/>\n		            </div>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Email <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"email\" name=\"email\" required autocomplete=\"off\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Username <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"text\" name=\"username\"required autocomplete=\"off\"/>\n		          </div>\n		          \n		          <div class=\"one-row\">\n		          	<div class=\"field-wrap\">\n		          	  <label>\n		          	    Password <span class=\"req\">*</span>\n		          	  </label>\n		          	  <input type=\"password\" name=\"password\" required autocomplete=\"off\"/>\n		          	</div>\n		          	\n		          	<div class=\"field-wrap\">\n		          	  <label>\n		          	    Confirm password <span class=\"req\">*</span>\n		          	  </label>\n		          	  <input type=\"password\" name=\"passwordCF\" required autocomplete=\"off\"/>\n		          	</div>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              School/Organization\n		            </label>\n		            <input type=\"text\" name=\"school\"/>\n		          </div>\n		          <button type=\"submit\" class=\"button button-block\"/>Get Started</button>\n		          <a href=\"login.html\">Already registered? Login now</a>\n	          </form>\n\n\n	        </div>\n	        \n	        <div id=\"org\">   \n	          <h1>Sign Up for Free</h1>\n	          \n	          <form action=\"\" method=\"post\" id=\"org\">\n		          <div class=\"one-row\">\n		            <div class=\"field-wrap\">\n		              <label>\n		                First Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"firstname\" required autocomplete=\"off\"/>\n		            </div>\n		          \n		            <div class=\"field-wrap\">\n		              <label>\n		                Last Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"lastname\"required autocomplete=\"off\"/>\n		            </div>\n		          </div>\n	          \n		          <div class=\"field-wrap\">\n		            <label>\n		              Organization\n		            </label>\n		            <input type=\"text\" name=\"school\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Email <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"email\" name=\"email\" required autocomplete=\"off\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Phone number\n		            </label>\n		            <input type=\"tel\" name=\"phone\"/>\n		          </div>\n\n		          <button class=\"button button-block\"/>Submit</button>\n	          </form>\n	        </div>\n\n	      </div>\n	</div>\n\n	<footer class=\"container-fluid cyan-bg\" id=\"login\">\n		<div class=\"row\">	\n			<div class=\"col-sm-4 text-left image hidden-xs\">\n				<a href=\"index.html\"><img src=\"images/mvlogo.png\" alt=\"Logo\"></a>\n			</div>\n			<div class=\"col-sm-4 hidden-xs text-center social\">\n			  <ul class=\"list-inline social\">\n			    <li >Connect with us on</li><br>\n			    <li><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n			    <li><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n			    <li><a href=\"#\"><i class=\"fa fa-instagram\"></i></a></li>\n			  </ul>\n			</div>\n			<div class=\"col-sm-4 text-right darkgrey\">\n	            <p>Math Village &copy; 2017</p>\n		        <p class=\"hidden-xs\">  Created by <a href=\"https://github.com/jeremydang\">Thanh Dang</a></p>\n			</div>\n		</div>\n	</footer>\n\n	<!--js-lib-->\n	<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n	<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n	<script type=\"text/javascript\" src=\"js/main.js\"></script>\n</body>\n</html>",
+			"file": "/E/SOFTWARE PROJECT 1/math_village/signup.html",
+			"file_size": 7173,
+			"file_write_time": 131365567804680608,
+			"settings":
+			{
+				"buffer_size": 6981,
 				"line_ending": "Windows"
 			}
 		},
@@ -91,15 +122,23 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
 			"settings":
 			{
-				"buffer_size": 8268,
+				"buffer_size": 14704,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/css/normalize.css",
+			"settings":
+			{
+				"buffer_size": 7381,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 			"settings":
 			{
-				"buffer_size": 3601,
+				"buffer_size": 8165,
 				"line_ending": "Windows"
 			}
 		},
@@ -107,7 +146,7 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
 			"settings":
 			{
-				"buffer_size": 2198,
+				"buffer_size": 4349,
 				"line_ending": "Windows"
 			}
 		}
@@ -187,6 +226,9 @@
 	],
 	"file_history":
 	[
+		"/E/SOFTWARE PROJECT 1/math_village/index.html",
+		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
 		"/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/autoHeight.html",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/responsiveWidth.html",
@@ -204,7 +246,6 @@
 		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/TASK.todo",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/PlainTasks/PlainTasks (Windows).sublime-settings",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/PlainTasks.sublime-settings",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/Emmet.sublime-settings",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Emmet.sublime-settings",
 		"/C/Users/OS/Documents/javascript ex/GunCanvas.sublime-project",
@@ -245,7 +286,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 96.0,
 		"where_history":
 		[
 		]
@@ -255,6 +296,37 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"u",
+			"signup",
+			"form",
+			"background",
+			">\n",
+			"login",
+			"signup",
+			".form",
+			" .",
+			"$br",
+			"$bold",
+			"$normal",
+			"$thin",
+			"$white",
+			" $form-bg",
+			"$body-bg",
+			"$gray",
+			"$gray-light",
+			"-dark",
+			"$main",
+			"strong",
+			"</",
+			"value",
+			"top",
+			";\n",
+			"blue",
+			";\n",
+			"darkgrey",
+			"navbar",
+			"header",
+			";\n",
 			"margin",
 			"pad-",
 			"}\n",
@@ -320,24 +392,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/index.html",
+					"file": "/E/SOFTWARE PROJECT 1/math_village/login.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8259,
+						"buffer_size": 3741,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7482,
-								7483
+								2498,
+								2498
 							]
 						],
 						"settings":
@@ -345,44 +417,61 @@
 							"auto_complete": false,
 							"git_gutter_enabled": true,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false,
-							"wrap_width": 0
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3460.0,
+						"translation.y": 1040.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
+					"file": "/E/SOFTWARE PROJECT 1/math_village/signup.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8268,
+						"buffer_size": 6981,
 						"regions":
 						{
-							"mark":
-							{
-								"flags": 144,
-								"icon": "dot",
-								"regions":
-								[
-									[
-										6939,
-										6939
-									]
-								],
-								"scope": "mark"
-							}
 						},
 						"selection":
 						[
 							[
-								8127,
-								8127
+								2117,
+								2117
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 816.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14341,
+								14341
 							]
 						],
 						"settings":
@@ -393,27 +482,58 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 9127.0,
+						"translation.y": 15124.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
-					"semi_transient": false,
+					"buffer": 3,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/css/normalize.css",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3601,
+						"buffer_size": 7381,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1720,
-								1720
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 80.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1390,
+								1390
 							]
 						],
 						"settings":
@@ -423,27 +543,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1200.0,
+						"translation.y": 5427.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2198,
+						"buffer_size": 4349,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1151,
-								1151
+								3958,
+								3958
 							]
 						],
 						"settings":
@@ -455,10 +575,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 80.0,
+						"translation.y": 2640.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -534,12 +654,12 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 488.0
 	},
 	"selected_group": 0,
 	"settings":

@@ -104,7 +104,34 @@
 	    width: 100%;
     }
 
+	.signup{
+		width: 100%;
+		border-radius: 0;
+	}
 
+	.tab-group li a {
+		width: 100%;
+		float:none;
+		margin-top: 20px;
+	}
+
+	.one-row > div {
+	  float:none;
+	  width:100%;
+	  margin-right:0;
+	}     
+
+	.one-row > div:last-child { 
+	  margin-bottom:40px;
+	}
+
+	.button{
+		font-size: 1.8em;
+	}
+
+	.signup form > a{
+		font-size: 1.2em;
+	}	 
 }
 
 /* Medium phone screen - Android phone - Iphone 6,7 */
@@ -197,10 +224,35 @@
 		text-align: center !important;
 	}
 
-	.login-block {
+	.login-block { 
 	    width: 100%;
-    }
+	    border-radius: 0; 
+	}
 
+	.signup{
+		width: 100%;
+		border-radius: 0;
+	}
+
+	.tab-group li a {
+		width: 100%;
+		float:none;
+		margin-top: 20px;
+	}
+
+	.one-row > div {
+	  float:none;
+	  width:100%;
+	  margin-right:0;
+	}     
+
+	.one-row > div:last-child { 
+	  margin-bottom:40px;
+	}
+
+	.button{
+		font-size: 2em;
+	}
 
 }
 
@@ -237,8 +289,6 @@
 	.logo-menu{
 		width: 80%;
 	}
-
-
 
 	.feature-1 .btn-primary{
 	  max-width: 80%;
@@ -290,7 +340,31 @@
 	    width: 100%;
     }
 
+	  .signup{
+	  	width: 100%;
+	  	border-radius: 0;
+	  }
 
+	  .tab-group li a {
+	  	width: 100%;
+	  	float:none;
+	  	margin-top: 20px;
+	  }
+
+	  .one-row > div {
+	    float:none;
+	    width:100%;
+	    margin-right:0;
+	  }     
+
+	  .one-row > div:last-child { 
+	    margin-bottom:40px;
+	  }
+
+	  .button{
+	  	font-size: 1.8em;
+	  }
+ 
 }
 
 /* Medium tablet */
