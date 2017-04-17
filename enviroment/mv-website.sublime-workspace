@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"validate",
+				"validateAll〔function〕"
+			],
+			[
+				"fir",
+				"$firstname〔variable〕"
+			],
+			[
 				"ma",
 				"margin-top"
 			],
@@ -103,18 +111,23 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/login.html",
 			"settings":
 			{
-				"buffer_size": 3741,
+				"buffer_size": 3938,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n	<meta charset=\"UTF-8\">\n	<title>Login | Math Village</title>\n	<meta name=\"keywords\" content=\"\">\n	<meta name=\"description\" content=\"\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n	<link href=\"images/favicon.png\" rel=\"shortcut icon\">\n\n	<!--styles-->\n	<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n	<link rel=\"stylesheet\" href=\"font-awesome/css/font-awesome.min.css\">\n	<link rel=\"stylesheet\" href=\"css/normalize.css\">\n	<link rel=\"stylesheet\" href=\"css/mainstyle.css\">\n	<link rel=\"stylesheet\" href=\"css/responsive.css\">\n\n	<!--font-google-->\n	<link href=\"https://fonts.googleapis.com/css?family=Arvo\" rel=\"stylesheet\">\n	<link href=\"https://fonts.googleapis.com/css?family=Montserrat:400,600,700\" rel=\"stylesheet\">\n</head>\n\n<body id=\"login\">\n	<div id=\"preloader\">\n	  <div id=\"status\">\n	  <img alt=\"logo\" src=\"images/mvlogo-min.png\">\n	  </div>\n	</div>\n\n    <div class=\"container-fluid no-pad\">\n	  <div class=\"nav navbar-inverse\" id=\"login\">\n	      <div class=\"navbar-header\">\n		      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n		        <span class=\"icon-bar\"></span>\n		        <span class=\"icon-bar\"></span>\n		        <span class=\"icon-bar\"></span>\n		      </button>\n		      <a class=\"logo-menu\" href=\"index.html\"><img src=\"images/mvlogo.png\" alt=\"Logo\"></a>\n		  </div>\n		  <div class=\"navbar-collapse collapse head\">\n	        <ul class=\"nav navbar-nav navbar-right\">\n	          <li><a href=\"index.html\">Home</a></li>\n	          <li><a href=\"about.html\" class=\"hidden-sm\">About</a></li>\n	          <li><a href=\"getstarted.html\">Get started</a></li>\n	          <li><a href=\"leaderboard.html\">Leaderboard</a></li>\n	          <li><a href=\"contact.html\">Contact</a></li>\n	        </ul>\n		  </div>\n	   </div>\n	</div>\n\n	<div class=\"signup\">\n	\n	      <ul class=\"tab-group\">\n	        <li class=\"tab active\"><a href=\"#idv\">Individual</a></li>\n	        <li class=\"tab\"><a href=\"#org\">Organization</a></li>\n	      </ul>\n	      \n	      <div class=\"tab-content\">\n	        <div id=\"idv\">   \n	          <h1>Sign Up for Free</h1>\n	          <form action=\"sigup.php\" method=\"post\" id=\"idv\">\n		          <div class=\"one-row\">\n		            <div class=\"field-wrap\">\n		              <label>\n		                First Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"firstname\" required autocomplete=\"off\"/>\n		            </div>\n		        \n		            <div class=\"field-wrap\">\n		              <label>\n		                Last Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"lastname\"required autocomplete=\"off\"/>\n		            </div>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Email <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"email\" name=\"email\" required autocomplete=\"off\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Username <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"text\" name=\"username\"required autocomplete=\"off\"/>\n		          </div>\n		          \n		          <div class=\"one-row\">\n		          	<div class=\"field-wrap\">\n		          	  <label>\n		          	    Password <span class=\"req\">*</span>\n		          	  </label>\n		          	  <input type=\"password\" name=\"password\" required autocomplete=\"off\"/>\n		          	</div>\n		          	\n		          	<div class=\"field-wrap\">\n		          	  <label>\n		          	    Confirm password <span class=\"req\">*</span>\n		          	  </label>\n		          	  <input type=\"password\" name=\"passwordCF\" required autocomplete=\"off\"/>\n		          	</div>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              School/Organization\n		            </label>\n		            <input type=\"text\" name=\"school\"/>\n		          </div>\n		          <button type=\"submit\" class=\"button button-block\"/>Get Started</button>\n		          <a href=\"login.html\">Already registered? Login now</a>\n	          </form>\n\n\n	        </div>\n	        \n	        <div id=\"org\">   \n	          <h1>Sign Up for Free</h1>\n	          \n	          <form action=\"\" method=\"post\" id=\"org\">\n		          <div class=\"one-row\">\n		            <div class=\"field-wrap\">\n		              <label>\n		                First Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"firstname\" required autocomplete=\"off\"/>\n		            </div>\n		          \n		            <div class=\"field-wrap\">\n		              <label>\n		                Last Name <span class=\"req\">*</span>\n		              </label>\n		              <input type=\"text\" name=\"lastname\"required autocomplete=\"off\"/>\n		            </div>\n		          </div>\n	          \n		          <div class=\"field-wrap\">\n		            <label>\n		              Organization\n		            </label>\n		            <input type=\"text\" name=\"school\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Email <span class=\"req\">*</span>\n		            </label>\n		            <input type=\"email\" name=\"email\" required autocomplete=\"off\"/>\n		          </div>\n\n		          <div class=\"field-wrap\">\n		            <label>\n		              Phone number\n		            </label>\n		            <input type=\"tel\" name=\"phone\"/>\n		          </div>\n\n		          <button class=\"button button-block\"/>Submit</button>\n	          </form>\n	        </div>\n\n	      </div>\n	</div>\n\n	<footer class=\"container-fluid cyan-bg\" id=\"login\">\n		<div class=\"row\">	\n			<div class=\"col-sm-4 text-left image hidden-xs\">\n				<a href=\"index.html\"><img src=\"images/mvlogo.png\" alt=\"Logo\"></a>\n			</div>\n			<div class=\"col-sm-4 hidden-xs text-center social\">\n			  <ul class=\"list-inline social\">\n			    <li >Connect with us on</li><br>\n			    <li><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n			    <li><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n			    <li><a href=\"#\"><i class=\"fa fa-instagram\"></i></a></li>\n			  </ul>\n			</div>\n			<div class=\"col-sm-4 text-right darkgrey\">\n	            <p>Math Village &copy; 2017</p>\n		        <p class=\"hidden-xs\">  Created by <a href=\"https://github.com/jeremydang\">Thanh Dang</a></p>\n			</div>\n		</div>\n	</footer>\n\n	<!--js-lib-->\n	<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n	<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n	<script type=\"text/javascript\" src=\"js/main.js\"></script>\n</body>\n</html>",
 			"file": "/E/SOFTWARE PROJECT 1/math_village/signup.html",
-			"file_size": 7173,
-			"file_write_time": 131365567804680608,
 			"settings":
 			{
-				"buffer_size": 6981,
+				"buffer_size": 8143,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
+			"settings":
+			{
+				"buffer_size": 8852,
 				"line_ending": "Windows"
 			}
 		},
@@ -122,31 +135,42 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
 			"settings":
 			{
-				"buffer_size": 14704,
+				"buffer_size": 15127,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/css/normalize.css",
-			"settings":
-			{
-				"buffer_size": 7381,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
-			"settings":
-			{
-				"buffer_size": 8165,
-				"line_ending": "Windows"
-			}
-		},
-		{
+			"contents": "\n$(document).ready(function(){\n\n  //------------------------------------//\n  //Preloader//\n  //------------------------------------//\n  \n  \"use strict\";\n  $(window).on(\"load\", function() { // makes sure the whole site is loaded\n    //preloader\n    $(\"#status\").fadeOut(); // will first fade out the loading animation\n    $(\"#preloader\").delay(450).fadeOut(\"slow\"); // will fade out the white DIV that covers the website.\n      \n    });    \n\n  //------------------------------------//\n  //Navbar//\n  //------------------------------------//\n  var menu = $('.navbar');\n  $(window).bind('scroll', function(e){\n    if($(window).scrollTop() > 200){\n      if(!menu.hasClass('open')){\n        menu.addClass('open');\n      }\n    }else{\n      if(menu.hasClass('open')){\n        menu.removeClass('open');\n      }\n    }\n  });\n\n  //------------------------------------//\n  //Fullpage//\n  //------------------------------------//\n\n  if(document.getElementById(\"fullpage\"))\n  {\n      $('#fullpage').fullpage({\n          fitToSection: false,\n          anchors: ['header', 'feature-1', 'feature-2', 'feature-3', 'feature-4','join-us', 'footer' ],\n          sectionsColor: ['#0b1733', '#fedc32', '#03c9a5', '#e13844','#0b1733','#0b1733','#0b1733' ],\n          navigation: true,\n          navigationPosition: 'right',\n          responsiveWidth: 767,\n          scrollBar: true,\n      });\n  }\n\n\n\n  //------------------------------------//\n  //Wow Animation//\n  //------------------------------------// \n  if(typeof WOW !== \"undefined\"){\n    var wow = new WOW(\n          {\n            boxClass:     'wow',      // animated element css class (default is wow)\n            animateClass: 'animated', // animation css class (default is animated)\n            offset:       0,          // distance to the element when triggering the animation (default is 0)\n            mobile:       false        // trigger animations on mobile devices (true is default)\n          }\n        );\n    wow.init();\n  }\n  \n\n});\n\n//------------------------------------//\n//Display error//\n//------------------------------------// \n\n\nfunction displayErrMess(err,element){\n  \n  if(element.style.display=\"none\"){\n    element.style.display=\"block\";\n  }\n  \n  element.innerHTML= \"<i class=\\\"fa fa-exclamation-triangle\\\" aria-hidden=\\\"true\\\"></i>\" + \" \" + err;\n}\n\n//------------------------------------//\n//Login validation//\n//------------------------------------// \n\nfunction validateLogin(form){\n\n  var action = form.getAttribute(\"action\"), \n  method = form.getAttribute(\"method\"), \n  errMess = \"\",\n  alert = document.getElementById(\"alert\");\n  \n  if(form.username.value ===  \"\" || form.password.value === \"\"){\n    errMess=\"Please enter a valid username or password.\";\n    displayErrMess(errMess,alert);\n  }\n  else{\n  \n    var data = new FormData(form);\n  \n    var http = new XMLHttpRequest();\n    http.open(method,action,true);\n  \n    http.onreadystatechange = function() {\n\n      if (this.readyState == 4 && this.status == 200){\n          errMess= this.responseText;\n      }\n      else{\n          errMess= \"Sorry, something went wrong. Please try again later.\";\n          console.log(\"AJAX error\");\n      }\n      displayErrMess(errMess,alert);\n    };\n  \n    http.send(data);\n  } \n\n}\n\n//------------------------------------//\n//Signup//\n//------------------------------------// \n\n  //Styling\n\n  $('.signup').find('input, textarea').on('blur focus', function (e) {\n    \n    var $this = $(this),\n        label = $this.prev('label');\n\n      if (e.type === 'focus') {\n            label.addClass('active highlight');\n          \n      } else if (e.type === 'blur') {\n        if( $this.val() === '' ) {\n          label.removeClass('active highlight'); \n        } else {\n          label.removeClass('highlight');   \n        }   \n      } \n\n  });\n\n$('.tab a').on('click', function (e) {\n  \n  e.preventDefault();\n  \n  $(this).parent().addClass('active');\n  $(this).parent().siblings().removeClass('active');\n  \n  target = $(this).attr('href');\n\n  $('.tab-content > div').not(target).hide();\n  \n  $(target).fadeIn(600);\n  \n});\n\n  //Form handling\n\nfunction checkForm(form){\n\n  var action = form.getAttribute(\"action\"), \n  method = form.getAttribute(\"method\"), \n  errMess = \"\", alert = document.getElementById(\"alert\");;\n    \n  if (form.formname.value === \"signupIdv\") {\n\n    //reset error field\n    document.getElementById(\"name\").innerHTML = \"\";\n    document.getElementById(\"uname\").innerHTML = \"\";\n    document.getElementById(\"eml\").innerHTML = \"\";\n    document.getElementById(\"pwd\").innerHTML = \"\";\n    document.getElementById(\"schl\").innerHTML = \"\";\n\n    //check blank field\n    if(form.firstname.value ===  \"\" || form.lastname.value === \"\" \n      || form.username.value ===  \"\" || form.password.value ===  \"\"\n      || form.retypeP.value ===  \"\"|| form.email.value ===  \"\"){\n      errMess = \"One or more fields are blank. Please fill all the required fields.\";\n      displayErrMess(errMess,alert);\n    }\n  }\n\n  if(!errMess){\n    var data = new FormData(form);\n    \n    var http = new XMLHttpRequest();\n    http.open(method,action,true);\n    \n    http.onreadystatechange = function() {\n\n      if (this.readyState == 4){\n                \n        if (this.status == 200) {\n          var response = this.responseText;\n            try{\n\n              var errMessArr = JSON.parse(response);\n\n              for (var i in errMessArr){\n\n                var obj = errMessArr[i];\n\n                for (var field in obj){\n                  displayErrMess(obj[field],document.getElementById(field));\n                }\n                \n              }\n              errMess = \"One or more fields are invalid. Please enter again.\";\n            }\n            catch(e){\n              console.log(e.message);\n              if(!response.trim()){\n                window.alert(\"success\");\n              }\n              else{\n                errMess = response;\n                window.alert(\"error\");\n              }\n            }\n        }\n        else{\n          errMess= \"Sorry, something went wrong. Please try again later.\";\n          console.log(\"Error -> Status: \" + this.status + \" : \" + this.statusText);\n        }\n      }\n\n      displayErrMess(errMess,alert);\n    };\n\n    http.send(data);\n  }\n}\n\nfunction validate(field, value){\n\n  if(value){\n    if (field === \"retypeP\"){\n      var pwd = document.getElementById(\"password\").value;\n      if(pwd){\n        if(value !== pwd){\n          displayErrMess(\"Password mismatch. Please enter again\", document.getElementById(\"pwd\"));\n        }\n      }\n    }\n    else if(field === \"password\"){\n      var repwd = document.getElementById(\"retypeP\").value;\n      if(repwd){\n        if(value !== repwd){\n          displayErrMess(\"Password mismatch. Please enter again\", document.getElementById(\"pwd\"));\n        }\n      }\n    }\n\n    \n  }\n\n}\n\n",
 			"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+			"file_size": 7054,
+			"file_write_time": 131368547582947646,
 			"settings":
 			{
-				"buffer_size": 4349,
+				"buffer_size": 6800,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/validate.php",
+			"settings":
+			{
+				"buffer_size": 3551,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/submit.php",
+			"settings":
+			{
+				"buffer_size": 8303,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/E/SOFTWARE PROJECT 1/math_village/connection.php",
+			"settings":
+			{
+				"buffer_size": 468,
 				"line_ending": "Windows"
 			}
 		}
@@ -158,10 +182,30 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 288.0,
-		"last_filter": "task",
+		"height": 219.0,
+		"last_filter": "php",
 		"selected_items":
 		[
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"jav	",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"task",
 				"Set Syntax: Tasks"
@@ -187,10 +231,6 @@
 				"Package Control: Install Package"
 			],
 			[
-				"Package Control: ",
-				"Package Control: Add Repository"
-			],
-			[
 				"Package Co",
 				"Package Control: Install Package"
 			],
@@ -199,7 +239,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 528.0
 	},
 	"console":
 	{
@@ -227,9 +267,11 @@
 	"file_history":
 	[
 		"/E/SOFTWARE PROJECT 1/math_village/index.html",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
-		"/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
+		"/E/SOFTWARE PROJECT 1/math_village/package.json",
+		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
+		"/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
+		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/autoHeight.html",
 		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/need/responsiveWidth.html",
 		"/E/web/landing page web/Snow - By Visual Soldiers/index.html",
@@ -296,6 +338,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"text-danger",
+			"isset",
+			"Error in processing data. Please return later.",
+			"pwd",
+			"username",
+			"$username",
+			"include",
+			";\n",
+			"$result",
+			"	\n",
 			"u",
 			"signup",
 			"form",
@@ -382,6 +434,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -392,7 +445,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -401,15 +454,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3741,
+						"buffer_size": 3938,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2498,
-								2498
+								2695,
+								2695
 							]
 						],
 						"settings":
@@ -420,10 +473,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1040.0,
+						"translation.y": 1269.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -432,15 +485,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6981,
+						"buffer_size": 8143,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2117,
-								2117
+								4517,
+								4517
 							]
 						],
 						"settings":
@@ -451,89 +504,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 816.0,
+						"translation.y": 2029.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14704,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14341,
-								14341
-							]
-						],
-						"settings":
-						{
-							"git_gutter_enabled": true,
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 15124.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/css/normalize.css",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 7381,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"git_gutter_enabled": true,
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 80.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8165,
+						"buffer_size": 8852,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1390,
-								1390
+								4369,
+								4369
 							]
 						],
 						"settings":
@@ -543,27 +534,58 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5427.0,
+						"translation.y": 8240.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+					"buffer": 3,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4349,
+						"buffer_size": 15127,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3958,
-								3958
+								11476,
+								11476
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 12169.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6791,
+								6791
 							]
 						],
 						"settings":
@@ -575,10 +597,100 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2640.0,
+						"translation.y": 4560.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/validate.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3551,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								571,
+								571
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1600.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/submit.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8303,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								408,
+								447
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/E/SOFTWARE PROJECT 1/math_village/connection.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 468,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								391,
+								391
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]

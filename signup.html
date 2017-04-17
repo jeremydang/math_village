@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Login | Math Village</title>
+	<title>Signup | Math Village</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -36,15 +36,15 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="logo-menu" href="index.html"><img src="images/mvlogo.png" alt="Logo"></a>
+		      <a class="logo-menu" href="index.php"><img src="images/mvlogo.png" alt="Logo"></a>
 		  </div>
 		  <div class="navbar-collapse collapse head">
 	        <ul class="nav navbar-nav navbar-right">
-	          <li><a href="index.html">Home</a></li>
-	          <li><a href="about.html" class="hidden-sm">About</a></li>
-	          <li><a href="getstarted.html">Get started</a></li>
-	          <li><a href="leaderboard.html">Leaderboard</a></li>
-	          <li><a href="contact.html">Contact</a></li>
+	          <li><a href="index.php">Home</a></li>
+	          <li><a href="about.php" class="hidden-sm">About</a></li>
+	          <li><a href="getstarted.php">Get started</a></li>
+	          <li><a href="leaderboard.php">Leaderboard</a></li>
+	          <li><a href="contact.php">Contact</a></li>
 	          <li><a href="login.html" class="hidden-sm hidden-md">Log in</a></li>
 	        </ul>
 		  </div>
@@ -59,100 +59,127 @@
 	      </ul>
 	      
 	      <div class="tab-content">
-	        <div id="idv">   
-	          <h1>Sign Up for Free</h1>
-	          <form action="sigup.php" method="post" id="idv">
+
+		    <h1>Sign Up for Free</h1>
+
+	      	<div class="alert alert-danger" id="alert"></div>
+
+	        <div id="idv">
+
+		        <h4 class ="alert alert-success" id="idv-success">Thank you for signing up.<br>
+		         We will redirect you to log in page now.</h4>   
+	       
+	          <form action="submit.php" method="post" 
+	          		onsubmit="event.preventDefault(); return checkForm(this)" id="signupIdv">
+	          	  <input type="hidden" name="formname" value="signupIdv"/>
+
+	          	  <div class="field-error" id="name"></div>
+
 		          <div class="one-row">
 		            <div class="field-wrap">
 		              <label>
 		                First Name <span class="req">*</span>
 		              </label>
-		              <input type="text" name="firstname" required autocomplete="off"/>
+		              <input type="text" name="firstname" required onblur="validate('name', this.value)"/>
 		            </div>
-		        
+
 		            <div class="field-wrap">
 		              <label>
 		                Last Name <span class="req">*</span>
 		              </label>
-		              <input type="text" name="lastname"required autocomplete="off"/>
+		              <input type="text" name="lastname" required onblur="validate('name', this.value)"/>
 		            </div>
 		          </div>
+
+		          <div class="field-error" id="eml"></div>
 
 		          <div class="field-wrap">
 		            <label>
 		              Email <span class="req">*</span>
 		            </label>
-		            <input type="email" name="email" required autocomplete="off"/>
+		            <input type="email" name="email" required onblur="validate('eml', this.value)"/>
 		          </div>
+
+		          <div class="field-error" id="uname"></div>
 
 		          <div class="field-wrap">
 		            <label>
 		              Username <span class="req">*</span>
 		            </label>
-		            <input type="text" name="username"required autocomplete="off"/>
+		            <input type="text" name="username" required autocomplete="off"
+		            		onblur="validate('uname', this.value)"/>
 		          </div>
+
+		          <div class="field-error" id="pwd"></div>
 		          
 		          <div class="one-row">
 		          	<div class="field-wrap">
 		          	  <label>
 		          	    Password <span class="req">*</span>
 		          	  </label>
-		          	  <input type="password" name="password" required autocomplete="off"/>
+		          	  <input type="password" name="password" required autocomplete="off"
+		          	  		onblur="validate('pwd', this.value)"/>
 		          	</div>
-		          	
+
 		          	<div class="field-wrap">
 		          	  <label>
 		          	    Confirm password <span class="req">*</span>
 		          	  </label>
-		          	  <input type="password" name="passwordCF" required autocomplete="off"/>
+		          	  <input type="password" name="retypeP" required autocomplete="off"
+		          	  		onblur="validate('retypeP', this.value)"/>
 		          	</div>
 		          </div>
+
+		          <div class="field-error" id="schl"></div>
 
 		          <div class="field-wrap">
 		            <label>
 		              School/Organization
 		            </label>
-		            <input type="text" name="school"/>
+		            <input type="text" name="school"
+		            		onblur="validate('schl', this.value)"/>
 		          </div>
-		          <button type="submit" class="button button-block"/>Get Started</button>
+		          <input type="submit" value="Get Started" name="signupBtn-idv" class="button button-block">
 		          <a href="login.html">Already registered? Login now</a>
 	          </form>
-
-
 	        </div>
 	        
-	        <div id="org">   
-	          <h1>Sign Up for Free</h1>
+	        <div id="org">
+
+	        	<h4 class ="alert alert-success" id="org-success">Thank you for signing up.<br>
+	        	 We will contact you later.</h4>      
 	          
-	          <form action="" method="post" id="org">
-		          <div class="one-row">
+	          <form action="submit.php" method="post" 
+			          onsubmit="event.preventDefault(); return checkForm(this)">
+
+	              <input type="hidden" name="formname" value="signupOrg"/>
+
 		            <div class="field-wrap">
 		              <label>
 		                First Name <span class="req">*</span>
 		              </label>
-		              <input type="text" name="firstname" required autocomplete="off"/>
+		              <input type="text" name="firstname" required/>
 		            </div>
 		          
 		            <div class="field-wrap">
 		              <label>
 		                Last Name <span class="req">*</span>
 		              </label>
-		              <input type="text" name="lastname"required autocomplete="off"/>
+		              <input type="text" name="lastname" required />
 		            </div>
-		          </div>
 	          
 		          <div class="field-wrap">
 		            <label>
-		              Organization
+		              Organization <span class="req">*</span>
 		            </label>
-		            <input type="text" name="school"/>
+		            <input type="text" name="org"/>
 		          </div>
 
 		          <div class="field-wrap">
 		            <label>
 		              Email <span class="req">*</span>
 		            </label>
-		            <input type="email" name="email" required autocomplete="off"/>
+		            <input type="email" name="email" required/>
 		          </div>
 
 		          <div class="field-wrap">
@@ -162,7 +189,7 @@
 		            <input type="tel" name="phone"/>
 		          </div>
 
-		          <button class="button button-block"/>Submit</button>
+		          <input type="submit" value="Submit" name="signupBtn-org" class="button button-block">
 	          </form>
 	        </div>
 

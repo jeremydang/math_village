@@ -21,20 +21,11 @@
 	<!--font-google-->
 	<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
-
-	<script src="session.php"></script>
 </head>
 
 <body>
 	<?php
 		session_start();
-		if($_SESSION['username']){
-			echo "<script type='text/javascript'>
-				document.getElementById('login').style.display = 'none';
-				document.getElementById('game').style.display = 'inline-block';
-				document.getElementById('user').style.display = 'inline-block';
-			</script>";
-		}
 	?>
 	<div id="preloader">
 	  <div id="status">
@@ -104,6 +95,19 @@
 				        </ul>
 					  </div>
 				   </div>
+
+				   <?php
+				   	if(session_id() !== ''){
+				   		if(isset($_SESSION['username'])){
+				   			echo "<script type='text/javascript'>
+				   				document.getElementById('login').style.display = 'none';
+				   				document.getElementById('game').style.display = 'inline-block';
+				   				document.getElementById('user').style.display = 'inline-block';
+				   			</script>";
+				   		}
+				   	}
+				   	
+				   ?>
 
 				    <div class="row header"> 
 

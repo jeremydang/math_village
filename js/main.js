@@ -29,24 +29,11 @@ $(document).ready(function(){
     }
   });
 
-  $(function(){
-      // this will get the full URL at the address bar
-      var url = window.location.href; 
-
-      // passes on every "a" tag 
-      $(".nav > li > a").each(function() {
-              // checks if its the same on the address bar
-          if(url == (this.href)) { 
-              $(this).closest("li").addClass("active");
-          }
-      });
-  });
-
   //------------------------------------//
   //Fullpage//
   //------------------------------------//
 
-  if(document.getElementById("fullpage") !== null)
+  if(document.getElementById("fullpage"))
   {
       $('#fullpage').fullpage({
           fitToSection: false,
@@ -80,86 +67,90 @@ $(document).ready(function(){
 });
 
 //------------------------------------//
-//Login validation//
+//Display error//
 //------------------------------------// 
-
-var loginForm = document.forms["login"];
-
-
-if (typeof loginForm !== "undefined") {
-  loginForm.onsubmit = function(event){
-  
-    event.preventDefault(); 
-  
-    var action = this.getAttribute("action"), 
-    method = this.getAttribute("method"); 
-  
-    var username = document.getElementById("username"),
-    password = document.getElementById("password"),
-    alertElement = document.getElementById("alert"),
-    errMess = "";
-  
-    if(username.value==""){
-  
-      errMess="Please enter a valid username";
-      displayErrMess(errMess,alertElement);
-  
-    }
-    else if(password.value==""){
-  
-      errMess="Please enter a valid password" ; 
-      displayErrMess(errMess,alertElement);
-  
-    }
-  
-    else{
-  
-      var data = new FormData(loginForm);
-  
-      var http = new XMLHttpRequest();
-      http.open(method,action,true);
-  
-      http.onload = function() {
-        if (http.status == 200) {
-        
-        }
-      };
-  
-      http.send(data);
-    } 
-  
-  };
-}
 
 
 function displayErrMess(err,element){
-  element.style.display="block";
-  element.innerHTML= "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>" + " " + err;
+  if(err && element){
+
+    element.style.display="block";
+    
+    element.innerHTML= "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>" + " " + err;
+  }
+}
+
+//------------------------------------//
+//Login validation//
+//------------------------------------// 
+
+function validateLogin(form){
+
+  var action = form.getAttribute("action"), 
+  method = form.getAttribute("method"), 
+  errMess = "",
+  alert = document.getElementById("alert");
+  
+  if(form.username.value ===  "" || form.password.value === ""){
+    errMess="Please enter a valid username or password.";
+    displayErrMess(errMess,alert);
+  }
+  else{
+  
+    var data = new FormData(form);
+  
+    var http = new XMLHttpRequest();
+    http.open(method,action,true);
+  
+    http.onreadystatechange = function() {
+
+      if (this.readyState == 4){
+        if(this.status == 200){
+          if(!this.responseText.trim()){
+            window.location.replace('index.php');
+
+          }
+          else{
+            errMess= this.responseText;
+          }
+          
+        }
+        else{
+            errMess= "Sorry, something went wrong. Please try again later.";
+        }
+        displayErrMess(errMess,alert);
+      }
+      
+    };
+  
+    http.send(data);
+  } 
+
 }
 
 //------------------------------------//
 //Signup//
 //------------------------------------// 
 
-$('.signup').find('input, textarea').on('blur focus', function (e) {
-  
-  var $this = $(this),
-      label = $this.prev('label');
+  //Styling
 
-    if (e.type === 'focus') {
+  $('.signup').find('input, textarea').on('blur focus', function (e) {
+    
+    var $this = $(this),
+        label = $this.prev('label');
 
-      if (!label.hasClass('active')) {
-        label.addClass('active'); 
-      }
-    }  
-    else {
-      if( $this.val() === '' )
-      {
-        label.removeClass('active');
-      }
-    }
+      if (e.type === 'focus') {
+            label.addClass('active highlight');
+          
+      } else if (e.type === 'blur') {
+        if( $this.val() === '' ) {
+          label.removeClass('active highlight'); 
+        } else {
+          label.removeClass('highlight');   
+        }   
+      } 
 
-});
+  });
 
 $('.tab a').on('click', function (e) {
   
@@ -175,3 +166,165 @@ $('.tab a').on('click', function (e) {
   $(target).fadeIn(600);
   
 });
+
+  //Form handling
+
+function checkForm(form){
+
+  var action = form.getAttribute("action"), 
+  method = form.getAttribute("method"), 
+  errMess = "", alert = document.getElementById("alert");
+    
+  if (form.formname.value === "signupIdv") {
+
+    //reset error field
+    document.getElementById("name").innerHTML = "";
+    document.getElementById("uname").innerHTML = "";
+    document.getElementById("eml").innerHTML = "";
+    document.getElementById("pwd").innerHTML = "";
+    document.getElementById("schl").innerHTML = "";
+
+    //check blank field
+    if(form.firstname.value ===  "" || form.lastname.value === "" 
+      || form.username.value ===  "" || form.password.value ===  ""
+      || form.retypeP.value ===  ""|| form.email.value ===  ""){
+
+      errMess = "One or more fields are blank. Please fill all the required fields.";
+
+      displayErrMess(errMess,alert);
+    }
+  }
+
+  if(!errMess){
+    var data = new FormData(form);
+    
+    var http = new XMLHttpRequest();
+
+    http.open(method,action,true);
+    
+    http.onreadystatechange = function() {
+
+      if (this.readyState == 4){
+                
+        if (this.status == 200) {
+          var response = this.responseText;
+            try{
+
+              var errMessArr = JSON.parse(response);
+
+              for (var i in errMessArr){
+
+                var obj = errMessArr[i];
+
+                for (var field in obj){
+                  displayErrMess(obj[field],document.getElementById(field));
+                }
+                
+              }
+              errMess = "One or more fields are invalid. Please enter again.";
+              displayErrMess(errMess,alert);
+            }
+            catch(e){
+              if(!response.trim()){             //successfully signning up
+
+                form.style.display = "none";
+                alert.style.display = "none";
+
+                switch(form.formname.value){
+                  case "signupIdv":
+
+                  document.getElementById("idv-success").style.display = "block";
+
+                  setTimeout(function(){window.location.replace('login.html');}, 5000);
+
+                  break;
+
+                  case "signupOrg":
+
+                  document.getElementById("org-success").style.display = "block";
+                }
+              }
+              else{                                 // other errors
+                errMess = response;
+                displayErrMess(errMess,alert);
+              }
+            }
+        }
+        else{
+          errMess= "Sorry, something went wrong. Please try again later.";
+          displayErrMess(errMess,alert);
+          console.log("Error -> Status: " + this.status + " : " + this.statusText);
+        }
+      }
+    };
+
+    http.send(data);
+  }
+}
+
+function validate(field, value){
+
+  if(value){
+
+    var  errMess = "", alert = document.getElementById("alert");
+
+    var form = document.getElementById("signupIdv"),
+       method = form.getAttribute("method"), 
+       action = form.getAttribute("action");
+        
+    if (field !== "retypeP") {
+      
+      var http = new XMLHttpRequest();
+
+      http.open(method,action,true);
+
+      http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      
+      http.onreadystatechange = function() {
+  
+        if (this.readyState == 4){
+                  
+          if (this.status == 200) {
+            var response = this.responseText;
+            var fieldErr = document.getElementById(field);
+            if(response.trim() !== ""){
+              displayErrMess(response,fieldErr);
+            }
+            else{
+              fieldErr.style.display="none";
+            }
+
+            if(field === "pwd"){        //check in case user fill retype pass first
+              var repwd = form.retypeP.value;
+              if(repwd){
+                if (document.getElementById("pwd").style.display == "none") {
+                  if(value !== repwd){
+                    displayErrMess("Password mismatch. Please enter again", document.getElementById("pwd"));
+                  }
+                }
+              }
+            }
+          }
+          else{
+            errMess= "Sorry, something went wrong. Please try again later.";
+            displayErrMess(errMess,alert);
+
+            console.log("Error -> Status: " + this.status + " : " + this.statusText);
+          }
+        }
+      };
+      http.send(encodeURI("field="+field +"&"+ "value="+value));
+    }
+    else{
+    var pwd = form.password.value;                 //check retype pass
+      if(pwd){    //only check if password is not blank
+        if(value !== pwd){
+          displayErrMess("Password mismatch. Please enter again", document.getElementById("pwd"));
+        }
+        else{
+          document.getElementById("pwd").style.display = "none";
+        }
+      }
+    }
+  }
+}

@@ -30,6 +30,7 @@
     "lite-server": "^2.3.0"
   },
   "dependencies": {
-    "normalize.css": "^6.0.0"
+    "normalize.css": "^6.0.0",
+    "phpmailer/phpmailer": "~5.2"
   }
 }

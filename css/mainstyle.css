@@ -356,6 +356,61 @@ hr.line {
   margin-left: 2.5%;
 }
 
+.btn#game{
+  font-size: 1.4em;
+  width: 100%;
+  border-radius: 20px;
+  padding: 10px 10px;
+  color: #fff;
+  margin-top: 5px;
+  border-color: #fff;
+  display: none;
+}
+.btn#game:hover{
+  color: #fff;
+  background-color: #fedc32;
+}
+
+.dropdown{
+  margin: 15px 0 0 5px;
+  padding-bottom: 10px;
+  display: none;
+}
+.dropdown:hover{
+  color: #fedc32;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+  background-color: transparent;
+  border-color: transparent;
+  color: #fedc32;
+}
+
+.dropdown-menu >li >a{
+  font-size: 1.2em;
+  text-align: right;
+  padding-right: 0;
+}
+.dropdown-menu >li:last-child{
+  padding-bottom: 8px;
+}
+.dropdown-menu >li:first-child{
+  padding-top: 8px;
+}
+
+.dropdown-menu .divider{
+  margin: 6px 0;
+}
+
+.dropdown-menu >li >a:hover{
+  background : transparent;
+  color: #e13844;
+}
+
+.fa-user-circle:hover,.fa-caret-down:hover{
+  color: #fedc32;
+}
+
 /* ==========================================================================
    Header
    ========================================================================== */
@@ -390,7 +445,7 @@ hr.line {
 
  /* ==========================================================================
     Features
-    ========================================================================== */
+    ========================================================================= */
 
     .feature-1{
       background: url(../images/screen1.png) no-repeat center center;
@@ -818,5 +873,13 @@ hr.line {
       color: #e13844 ;
       margin-top: 20px;
       display: none;
+    }
+
+    .signup .alert-success{
+      display: none;
+      font-weight: 600;
+      margin-top: 50px;
+      font-size: 1.3em;
+      text-align: center;
     }
 
