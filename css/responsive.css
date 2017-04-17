@@ -121,10 +121,6 @@
 	  margin-right:0;
 	}     
 
-	.one-row > div:last-child { 
-	  margin-bottom:40px;
-	}
-
 	.button{
 		font-size: 1.8em;
 	}
@@ -246,10 +242,6 @@
 	  margin-right:0;
 	}     
 
-	.one-row > div:last-child { 
-	  margin-bottom:40px;
-	}
-
 	.button{
 		font-size: 2em;
 	}
@@ -270,7 +262,7 @@
 	}
 
 	header{
-		background-size: 1300px 711px ;
+		background: none;
 	}
 
 	.container-fluid .navbar-inverse{
@@ -357,10 +349,6 @@
 	    margin-right:0;
 	  }     
 
-	  .one-row > div:last-child { 
-	    margin-bottom:40px;
-	  }
-
 	  .button{
 	  	font-size: 1.8em;
 	  }
@@ -406,7 +394,7 @@
 	}
 
 	.feature-1 {
-		padding-top: 55%;
+		padding-top: 49%;
 	}
 
 	.feature-3 img{
@@ -467,7 +455,7 @@
 	}
 
 	.feature-1 {
-		padding-top: 45%;
+		padding-top: 35%;
 	}
 
 	.feature-2 img{
@@ -525,10 +513,6 @@
 	  max-width: 70%;
 	}
 
-	.feature-1 {
-		padding-top: 35%;
-	}
-
 	.feature-2 .info {
 		margin: 40px 0 0 10px;
 	}
@@ -583,10 +567,6 @@
 	  max-width: 100%;
 	}
 
-	.feature-1 {
-		padding-top: 28%;
-	}
-
 	.feature-1 .btn-primary{
 	  max-width: 70%;
 	}
@@ -639,6 +619,10 @@
 	  margin-left: 0;
 	}
 
+	header{
+		background: none;
+	}
+
 	.logo-menu{
 		width: 30% !important;
 	}
@@ -686,12 +670,23 @@
 	  margin-left: 0;
 	}
 
+	header{
+		background: none;
+	}
+
 	.logo-menu{
 		width: 30% !important;
 	}
 
 	.feature-1 {
 		padding-top: 1% !important;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) and (orientation: landscape) { 
+
+	.feature-1 {
+		padding-top: 20% !important;
 	}
 }
 
