@@ -15,8 +15,9 @@
 					if(checkExistUsername($username,$conn)){
 						if(validatePassword($username,$pwd, $conn)){
 
-							session_start();					//save user to
-							$_SESSION['id']=session_id();
+							session_start();
+							$_SESSION = array(); 						
+							$_SESSION['id']=session_id();			//save user to session
 							$_SESSION['username'] = $username;
 
 							$conn = null;						// close connection to database
@@ -140,7 +141,7 @@
 
 					    date_default_timezone_set('Etc/UTC');
 
-					    require 'PHPMailer/PHPMailerAutoload.php';
+					    require '../PHPMailer/PHPMailerAutoload.php';
 
 					    $mail = new PHPMailer;
 
@@ -189,6 +190,55 @@ EOT;
 				else{
 					echo 'One or more fields are blank. Please fill all the required fields.';
 				}
+
+			break;
+
+			case "contact":
+
+				$email = sanitizeInput($_POST["email"]);
+				$name = sanitizeInput($_POST["name"]);
+				$subject = sanitizeInput($_POST["subject"]);
+				$message = sanitizeInput($_POST["message"]);
+
+			    date_default_timezone_set('Etc/UTC');
+
+			    require '../PHPMailer/PHPMailerAutoload.php';
+
+			    $mail = new PHPMailer;
+
+			    $mail->isSMTP();
+			    $mail->Host = 'smtp.gmail.com';
+			    $mail->Port = 587;
+			    $mail->SMTPSecure = 'tls';
+			    $mail->SMTPAuth = true;
+			    $mail->Username = $sysemail;
+			    $mail->Password = $mailpwd;
+			    
+			    $mail->setFrom('jeremydang2909@gmail.com');
+			    
+			    $mail->addAddress('dang.np.thanh@gmail.com');
+
+			    if ($mail->addReplyTo($email, $name)) {
+
+			        $mail->Subject = "[MATH VILLAGE] Contacting form from ".$name;
+			        $mail->isHTML(false);
+			        $mail->Body = <<<EOT
+					Name: $name
+					Subject: $subject
+					Email: $email
+					Message: $message
+EOT;
+
+			        if (!$mail->send()) {
+			            echo 'Sorry, something went wrong. Please try again later.';
+		            	$error = $mail->ErrorInfo;
+		                echo "<script>console.log(".$error.");</script>";
+			        } 
+			        else {
+			            /*not return anything, giving sign to JS that sign up is successful. JS will do the
+			            part displaying message*/
+			        }
+			    } 
 
 			break;
 

@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,7 @@
 
 	<!--styles-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/jquery.fullpage.css">
@@ -21,12 +24,13 @@
 	<!--font-google-->
 	<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+
+	<!--js-->
+	<script src="js/login.js"></script>
+
 </head>
 
 <body>
-	<?php
-		session_start();
-	?>
 	<div id="preloader">
 	  <div id="status">
 	    <img alt="logo" src="images/mvlogo-min.png">
@@ -49,7 +53,7 @@
 	        <li><a href="getstarted.php">Get started</a></li>
 	        <li><a href="leaderboard.php" class="hidden-sm">Leaderboard</a></li>
 	        <li><a href="contact.php">Contact</a></li>
-	        <li><a href="login.html">Log in</a></li>
+	        <li><a href="login.html" id="login-fixed">Log in</a></li>
 	      </ul>
 	    </div><!--/.navbar-collapse -->
 	  </div>
@@ -75,7 +79,7 @@
 				          <li><a href="getstarted.php">Get started</a></li>
 				          <li><a href="leaderboard.php"class="hidden-md hidden-sm">Leaderboard</a></li>
 				          <li><a href="contact.php">Contact</a></li>
-				          <li><a href="login.html" id="login">Log in</a></li>
+				          <li><a href="login.html" id="login-main">Log in</a></li>
 				          <li><a href="game.php" class="btn btn-primary hidden-xs" id="game">Play</a></li>
 				          <li>
 					          <div class="dropdown" id="user">
@@ -84,11 +88,13 @@
 					            <i class="fa fa-caret-down" aria-hidden="true"></i>
 					            </a>
 					            <ul class="dropdown-menu">
-					              <li><a href="#" class=>Play game</a></li>
+					              <li><a id="username"></a></li>
 					              <li role="presentation" class="divider"></li>
-					              <li><a href="#">User profile</a></li>
-					              <li role="presentation" class="divider"></li>
-					              <li><a href="#">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+					              <li><a href="game.php" class=>Play game</a></li>
+					              <li><a href="profile.php">User profile</a></li>
+					              <li><a onclick="logout()">Sign out 
+					              <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+					              </li>
 					            </ul>
 					          </div>
 				          </li>
@@ -97,16 +103,14 @@
 				   </div>
 
 				   <?php
-				   	if(session_id() !== ''){
-				   		if(isset($_SESSION['username'])){
-				   			echo "<script type='text/javascript'>
-				   				document.getElementById('login').style.display = 'none';
-				   				document.getElementById('game').style.display = 'inline-block';
-				   				document.getElementById('user').style.display = 'inline-block';
-				   			</script>";
-				   		}
-				   	}
-				   	
+			   		
+			   		if(isset($_SESSION['username'])){
+			   			$username = (string)$_SESSION["username"];
+			   			echo "<script type='text/javascript'>";
+			   			echo "login(\"$username\");";
+			   			echo "</script>";
+			   		}
+	
 				   ?>
 
 				    <div class="row header"> 
@@ -142,7 +146,7 @@
 					<h1 class="wow fadeInUp blue">
 						<hr  class="line blue margin-20"> WE BUILD GAMES THAT PARENTS WANT THEIR KIDS TO PLAY 
 					</h1>
-					<a href="aboutus.html" class="wow fadeInUp btn btn-primary btn-wide">About us</a>
+					<a href="about.php" class="wow fadeInUp btn btn-primary btn-wide">About us</a>
 				</div>
 			</div>
 		</div>
@@ -157,11 +161,11 @@
 						WE IMPROVE <br>YOUR CHILDREN'S <br>MATH SKILLS
 					</h1>
 					<p class="wow fadeInRight darkgrey lead visible-lg">
-						Lorem ipsum dolor sit amet, consectetur 
-						adipisicing elit. Aperiam molestias velit
-						nesciunt quasi possimus nemo. Natus omnis
-						harum eaque, nemo tempore hic, temporibus
-						id recusandae, nobis, est illum facere?
+						We implement many math arithmetic problems in  
+						most of our game tasks. These problems are 
+						of range for elementary students. They include 
+						basic operations such as plus, minus, multiply and
+						divide mixing together.
 					</p>
 				</div>
 			</div>
@@ -197,7 +201,7 @@
 					<h1 class="yellow"> 
 						WE CREATE <br> A COMPETITIVE <br> LEARNING ENVIROMENT 
 					</h1>
-					<a href="leaderboard.html" class="btn btn-primary btn-wide">VIEW OUR LEADERBOARD</a>
+					<a href="leaderboard.php" class="btn btn-primary btn-wide">VIEW OUR LEADERBOARD</a>
 				</div>					
 				<div class="col-md-5 text-center">
 					<img src="images/screen4.png" alt="leaderboard" class="wow fadeInRight">
@@ -209,7 +213,7 @@
 			<div class="row wow fadeIn">	
 				<div class="col-md-8 col-md-offset-2 text-center box">
 					<h1 class="blue"> READY TO JOIN US? </h1>
-					<a href="getstarted.html" class="btn btn-primary btn-wide">GETTING STARTED</a>
+					<a href="getstarted.php" class="btn btn-primary btn-wide">GETTING STARTED</a>
 				</div>
 			</div>
 		</div>
@@ -240,7 +244,7 @@
 
 	<!--js-lib-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script type="text/javascript" src="js/jquery.fullpage.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>

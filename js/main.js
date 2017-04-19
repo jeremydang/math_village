@@ -132,8 +132,6 @@ function validateLogin(form){
 //Signup//
 //------------------------------------// 
 
-  //Styling
-
   $('.signup').find('input, textarea').on('blur focus', function (e) {
     
     var $this = $(this),
@@ -167,33 +165,15 @@ $('.tab a').on('click', function (e) {
   
 });
 
-  //Form handling
+//------------------------------------//
+//Signup form handling//
+//------------------------------------//
 
 function checkForm(form){
 
   var action = form.getAttribute("action"), 
   method = form.getAttribute("method"), 
-  errMess = "", alert = document.getElementById("alert");
-    
-  if (form.formname.value === "signupIdv") {
-
-    //reset error field
-    document.getElementById("name").innerHTML = "";
-    document.getElementById("uname").innerHTML = "";
-    document.getElementById("eml").innerHTML = "";
-    document.getElementById("pwd").innerHTML = "";
-    document.getElementById("schl").innerHTML = "";
-
-    //check blank field
-    if(form.firstname.value ===  "" || form.lastname.value === "" 
-      || form.username.value ===  "" || form.password.value ===  ""
-      || form.retypeP.value ===  ""|| form.email.value ===  ""){
-
-      errMess = "One or more fields are blank. Please fill all the required fields.";
-
-      displayErrMess(errMess,alert);
-    }
-  }
+  errMess = "", alert = document.getElementById("alert");    
 
   if(!errMess){
     var data = new FormData(form);
@@ -226,22 +206,25 @@ function checkForm(form){
             }
             catch(e){
               if(!response.trim()){             //successfully signning up
-
-                form.style.display = "none";
                 alert.style.display = "none";
 
                 switch(form.formname.value){
                   case "signupIdv":
 
+                  form.style.display = "none";
                   document.getElementById("idv-success").style.display = "block";
-
                   setTimeout(function(){window.location.replace('login.html');}, 5000);
-
                   break;
+
 
                   case "signupOrg":
 
+                  form.style.display = "none";
                   document.getElementById("org-success").style.display = "block";
+                  break;
+
+                  case "contact":
+                  document.getElementById("contact-success").style.display = "block";
                 }
               }
               else{                                 // other errors
