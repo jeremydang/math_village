@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Math Village</title>
+	<title>Math Village | Contact</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,11 +13,9 @@
 	<link href="images/favicon.png" rel="shortcut icon">
 
 	<!--styles-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/jquery.fullpage.css">
 	<link rel="stylesheet" href="css/mainstyle.css">
 	<link rel="stylesheet" href="css/responsive.css">
 
@@ -55,7 +53,7 @@
 		            <li><a href="leaderboard.php"class="hidden-md hidden-sm">Leaderboard</a></li>
 		            <li><a href="contact.php"  class="active">Contact</a></li>
 		            <li><a href="login.html" id="login-main">Log in</a></li>
-		            <li><a href="game.php" class="btn btn-primary hidden-xs" id="game">Play</a></li>
+		            <li><a href="game/game.php" class="btn btn-primary hidden-xs" id="game">Play</a></li>
 		            <li>
 		  	          <div class="dropdown" id="user">
 		  	            <a data-toggle="dropdown">
@@ -65,7 +63,7 @@
 		  	            <ul class="dropdown-menu">
 		  	              <li><a id="username"></a></li>
 		  	              <li role="presentation" class="divider"></li>
-		  	              <li><a href="game.php" class=>Play game</a></li>
+		  	              <li><a href="game/game.php" class=>Play game</a></li>
 		  	              <li><a href="profile.php">User profile</a></li>
 		  	              <li><a onclick="logout()">Sign out 
 		  	              <i class="fa fa-sign-out" aria-hidden="true"></i></a>
