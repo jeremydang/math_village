@@ -132,17 +132,17 @@ export function makePointer(element, scale = 1) {
     },
 
     //`hitTestSprite` figures out if the pointer is touching a sprite
-    hitTestSprite(sprite) {
+    hitTestSprite(sprite, offsetX, offsetY) {
 
 
       let hit = false;
 
       if (!sprite.circular) {
 
-        let left = sprite.gx,
-            right = sprite.gx + sprite.width,
-            top = sprite.gy,
-            bottom = sprite.gy + sprite.height;
+        let left = sprite.gx + offsetX,
+            right = sprite.gx + sprite.width - offsetX,
+            top = sprite.gy + offsetY,
+            bottom = sprite.gy + sprite.height - offsetY;
 
 
         hit 
@@ -159,6 +159,21 @@ export function makePointer(element, scale = 1) {
         hit = distance < sprite.radius;
       }
       return hit;
+    },
+
+    outCanvas(canvas){
+
+      let out = false;
+
+      let left = 0;
+          right = canvas.width,
+          top = 0;
+          bottom = canvas.height;
+
+      out = 
+        this.x < left && this.x > right 
+      && this.y < top && this.y > bottom;    
+
     },
 
     updateDragAndDrop(draggableSprites) {

@@ -8,6 +8,10 @@
   font-style: normal;
 }
 
+@font-face {
+	font-family: 'Press Start 2P', cursive;
+}
+
 
 
 body{
@@ -20,7 +24,6 @@ body{
 	width: 100%;
 }
 canvas{
-	font-family: 'Press Start 2P', cursive;
 	padding: 0;
 	width: 960;
 	height: 640;

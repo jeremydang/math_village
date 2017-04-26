@@ -91,7 +91,7 @@ export function saveData(player){
 
 	let http = new XMLHttpRequest();
 
-	let jsonData = json.stringify(player);			//turn player object into json file
+	let jsonData = JSON.stringify(player);			//turn player object into json file
 
 	http.open('POST', '../backend/saveload.php', true);
 

@@ -244,6 +244,9 @@ class DisplayObject {
     this.pivotX = 0.5;
     this.pivotY = 0.5;
 
+    this.offsetX = 0;
+    this.offsetY = 0;
+
     this.vx = 0;
     this.vy = 0;
     
@@ -462,7 +465,7 @@ class DisplayObject {
   set interactive(value) {
     if (value === true) {
 
-      makeInteractive(this);
+      makeInteractive(this, this.offsetX, this.offsetY);
 
       buttons.push(this);
 
@@ -498,6 +501,8 @@ class Text extends DisplayObject {
     this.textBaseline = "top";
 
     this.strokeText = "none";
+
+    this.align = "center";
   }
 
   render(ctx) {
@@ -509,16 +514,29 @@ class Text extends DisplayObject {
     if (this.width === 0) this.width = ctx.measureText(this.content).width;
     if (this.height === 0) this.height = ctx.measureText("M").width;
 
-    ctx.translate(
-      -this.width , 
-      -this.height
-    );
     ctx.textBaseline = this.textBaseline;
-    ctx.fillText(
-      this.content,
-      0,
-      0
-    );
+
+    if(this.align === "center"){
+      ctx.translate(
+        -this.width , 
+        -this.height
+      );
+
+      ctx.fillText(
+        this.content,
+        0,
+        0
+      );
+    }
+    else if(this.align === "left"){
+
+      ctx.fillText(
+        this.content,
+        this.x,
+        this.y
+      );
+    }
+
     if (this.strokeText !== "none") ctx.strokeText();    
   }
 }
@@ -560,24 +578,38 @@ export function multiText(content, font= "16px sans-serif",
 
   Object.assign(sprite, {font, fillStyle, lineHeight});
 
-  sprite.setContent = (newContent) => {
+  sprite.setContent = (newContent, xCoor, yCoor) => {
+
+    sprite.children = [];
 
     let multiText = [];
 
-    let lines = newContent.split('\n');
+    let lines = newContent.split('/n');
+
+    let y = yCoor;
 
     for( let i = 0; i < lines.length; i ++){
 
-      let y = sprite.y;
+      let text = new Text (lines[i], sprite.font, sprite.fillStyle, xCoor, y);
 
-      let text = new Text (lines[i], sprite.font, sprite.fillStyle, sprite.x, y);
+      text.align = sprite.align;
+
+      sprite.addChild(text);
 
       multiText.unshift(text);
 
-      y += lineHeight;
+      y += sprite.lineHeight;
 
     }
     sprite.content = multiText;
+  };
+
+  sprite.setAlign = (align) => {
+
+    sprite.align = align;
+
+    sprite.content.forEach( text => text.align = align);
+
   };
 
   
@@ -681,8 +713,8 @@ class Map extends DisplayObject {
       firstgid: source.tilesets.firstgid,
       width: source.tilesets.imagewidth,
       height: source.tilesets.imageheight,
-      row: Math.floor(image.height / source.tileheight),
-      column: Math.floor(image.width / source.tilewidth)
+      row: Math.floor(source.tilesets.imageheight / source.tileheight),
+      column: Math.floor(source.tilesets.imagewidth / source.tilewidth)
     };
   }
 
@@ -696,8 +728,8 @@ class Map extends DisplayObject {
       y: 0
     }
     let id = tileId - this.tileset.firstgid;
-    let idX = Math.floor(id % column);
-    let idY = Math.floor(id / column);
+    let idX = Math.floor(id % this.tileset.column);
+    let idY = Math.floor(id / this.tileset.column);
 
     tile.x = (idX * this.tileWidth);
     tile.y = (idY * this.tileHeight);
@@ -710,8 +742,8 @@ class Map extends DisplayObject {
     for( let layerIdx = 0; layerIdx < this.layers.length; layerIdx ++){
 
       if(this.layers[layerIdx].type === "tilelayer"){
-        data = this.layers[layerIdx].data;
-        dataLength = data.length;
+        let data = this.layers[layerIdx].data;
+        let dataLength = data.length;
 
         for(let tileIdx = 0; tileIdx < dataLength; tileIdx ++){
           let tileId = data[tileIdx];
@@ -720,9 +752,9 @@ class Map extends DisplayObject {
 
           let tile = this.getTile(tileId);
 
-          let worldX = (-width*pivotX) + Math.floor(tileIndex % this.column) * this.tileWidth;
+          let worldX = (-this.width*this.pivotX) + Math.floor(tileIdx % this.column) * this.tileWidth;
 
-          let worldY = (-height*pivotY) + Math.floor(tileIndex % this.column) * this.tileHeight;
+          let worldY = (-this.height*this.pivotY) + Math.floor(tileIdx / this.column) * this.tileHeight;
 
           ctx.drawImage(tile.img, tile.x, tile.y, this.tileWidth, this.tileHeight, 
                                   worldX, worldY, this.tileWidth, this.tileHeight)
@@ -964,11 +996,11 @@ export function sprite(source, x, y) {
 Character & NPC sprite
 */
 
-export function character(source, x, y) {
+export function character(source, x, y, name) {
 
   let sprite = new Sprite(source, x, y);
 
-  sprite.name = source.name;
+  sprite.name = name;
 
   sprite.state = {
     up: 10,
@@ -1079,8 +1111,6 @@ CareerHouse
 class CareerHouse extends Sprite {
   constructor(source, x = 0, y = 0, name, description, difficulty, materials = []) {
     super(source, x, y);
-
-    this.interactive = true;
 
     Object.assign(this, {name,description,difficulty, materials});
 
@@ -1205,6 +1235,16 @@ class CareerHouse extends Sprite {
 
 export function careerhouse(source, x, y, name, description, difficulty, materials){
   let house = new CareerHouse(source, x, y, name, description, difficulty, materials);
+
+  house.scaleX = 0.6;
+
+  house.scaleY = 0.6;
+
+  house.offsetX = 150;
+
+  house.offsetY = 150;
+
+
   return house;
 }
 
@@ -1332,45 +1372,65 @@ export function render(canvas) {
 
     //Only display the sprite if it's visible
     //and within the area of the canvas
-    if (
-      sprite.visible
-      && sprite.gx < canvas.width + sprite.width
-      && sprite.gx + sprite.width >= -sprite.width
-      && sprite.gy < canvas.height + sprite.height
-      && sprite.gy + sprite.height >= -sprite.height
-    ) {
+        
+    if (sprite.align && sprite.align === "left") {
 
-      ctx.save();
-
-      //Shift the canvas to the center of the sprite's position
-      ctx.translate(
-        sprite.x + (sprite.width * sprite.pivotX),
-        sprite.y + (sprite.height * sprite.pivotY)
-      );
-
-      //Set the sprite's `rotation`, `alpha` and `scale`
-      ctx.rotate(sprite.rotation);
-      ctx.globalAlpha = sprite.alpha * sprite.parent.alpha;
-      ctx.scale(sprite.scaleX, sprite.scaleY);
-
-
-      //Use the sprite's own `render` method to draw the sprite
       if (sprite.render) sprite.render(ctx);
-
+      
       //If the sprite contains child sprites in its
       //`children` array, display them by recursively calling this very same
       //`displaySprite` function again
 
       if (sprite.children && sprite.children.length > 0) {
-
-        ctx.translate(-sprite.width * sprite.pivotX , -sprite.height * sprite.pivotY);
-
+      
         sprite.children.forEach(child => {
-
+      
           displaySprite(child);
         });
       }
-      ctx.restore();
+
+    }
+    else{
+
+        if (
+          sprite.visible
+          && sprite.gx < canvas.width + sprite.width
+          && sprite.gx + sprite.width >= -sprite.width
+          && sprite.gy < canvas.height + sprite.height
+          && sprite.gy + sprite.height >= -sprite.height
+        ) {
+        
+          ctx.save();
+        
+          //Shift the canvas to the center of the sprite's position
+          ctx.translate(
+            sprite.x + (sprite.width * sprite.pivotX),
+            sprite.y + (sprite.height * sprite.pivotY)
+          );
+        
+          //Set the sprite's `rotation`, `alpha` and `scale`
+          ctx.rotate(sprite.rotation);
+          ctx.globalAlpha = sprite.alpha * sprite.parent.alpha;
+          ctx.scale(sprite.scaleX, sprite.scaleY);
+        
+          //Use the sprite's own `render` method to draw the sprite
+          if (sprite.render) sprite.render(ctx);
+        
+          //If the sprite contains child sprites in its
+          //`children` array, display them by recursively calling this very same
+          //`displaySprite` function again
+        
+          if (sprite.children && sprite.children.length > 0) {
+        
+            ctx.translate(-sprite.width * sprite.pivotX , -sprite.height * sprite.pivotY);
+        
+            sprite.children.forEach(child => {
+        
+              displaySprite(child);
+            });
+          }
+          ctx.restore();
+        }
     }
   }
 };
@@ -1381,7 +1441,7 @@ Function to make sprite interactive
 
 export let buttons = [];
 
-function makeInteractive(o) {
+function makeInteractive(o, offsetX, offsetY) {
 
   //function to be called when the sprite is pressed, released,..
 
@@ -1400,12 +1460,14 @@ function makeInteractive(o) {
 
   o.hoverOver = false;
 
+  o.click = 0;
+
   //The `update` method will be called each frame 
   //inside the game loop
   o.update = (pointer, canvas) => {
 
     //Figure out if the pointer is touching the sprite
-    let hit = pointer.hitTestSprite(o);
+    let hit = pointer.hitTestSprite(o, offsetX, offsetY);
 
     //Figure out the current state and display suitable frame
     if (pointer.isUp) {
@@ -1421,11 +1483,19 @@ function makeInteractive(o) {
         else{
           o.scaleX = 1;
           o.scaleY = 1;
+          o.alpha = 1;
         }
 
       }
       else if(o instanceof CareerHouse){
-        o.gotoAndStop(0);
+
+        if(o.chosen === true){
+          o.gotoAndStop(0);
+        }
+        else{
+          o.gotoAndStop(2);
+        }
+        
       }
     }
 
@@ -1436,8 +1506,7 @@ function makeInteractive(o) {
       //Over state - the sprite is hover over
       o.state = "over";
 
-      //Show the second image state frame if this sprite has
-      //3 frames and it's a `Button` sprite
+
       if (o instanceof Button) {
         if(o.type === "menu"){
           o.gotoAndStop(1);
@@ -1445,6 +1514,7 @@ function makeInteractive(o) {
         else{
           o.scaleX = 1;
           o.scaleY = 1;
+          o.alpha = 0.9;
         }
 
       }
@@ -1456,9 +1526,7 @@ function makeInteractive(o) {
       if (pointer.isDown) {
         o.state = "down";
 
-        //Show the third frame if this sprite is a `Button` sprite and it
-        //has only three frames, or show the second frame if it
-        //only has two frames
+
         if (o instanceof Button) {
           if(o.type === "menu"){
             o.gotoAndStop(1);
@@ -1489,9 +1557,15 @@ function makeInteractive(o) {
     //the sprite has been pressed
     if (o.state === "over") {
       if (o.pressed) {
+
+        o.click ++;
+
         if (o.release) o.release();
+
         o.pressed = false;
+
         o.action = "released";
+
         if(o.sound) o.sound.play();
 
         //Call the tap method if the sprite has been tapped
@@ -1500,9 +1574,16 @@ function makeInteractive(o) {
         } 
 
         //Call the double click method if the sprite has been double click
-        if (pointer.tapped){
-          if(pointer.tapped && o.doubleClick) o.doubleClick();
-        }
+
+        setTimeout(function(){
+          if(o.click > 1){
+            if(o.doubleClick) o.doubleClick();
+
+          }
+          o.click = 0;
+
+        }, 300);
+
       }
 
       //Run the `over` method if it has been assigned
@@ -1522,11 +1603,12 @@ function makeInteractive(o) {
         o.action = "released";
       }
 
-      //Run the `out` method if it has been assigned
-      if (o.hoverOver) {
+      if (o.hoverOver || pointer.outCanvas) {
         if (o.out) o.out();
         o.hoverOver = false;
       }
+
+
     }
   };
 }
@@ -1567,7 +1649,6 @@ function addStatePlayer(sprite) {
   function playSequence(sequenceArray) {
     reset();
 
-    //Figure out how many frames there are in the range
     startFrame = sequenceArray[0];
     endFrame = sequenceArray[1];
     numberOfFrames = endFrame - startFrame;
@@ -1585,23 +1666,17 @@ function addStatePlayer(sprite) {
       frameCounter += 1;
     };
 
-    //Calculate the frame rate. Set the default fps to 12
     if (!sprite.fps) sprite.fps = 12;
     let frameRate = 1000 / sprite.fps;
 
-    //Set the sprite to the starting frame
     sprite.gotoAndStop(startFrame);
 
-    //If the state isn't already playing, start it
     if(!sprite.playing) {
       timerInterval = setInterval(advanceFrame.bind(this), frameRate);
       sprite.playing = true;
     }
   }
 
-/*  Called by `setInterval` to display the next frame
-  in the sequence based on the `frameRate`. When frame sequence
-  reaches the end, it will either stop it or loop it*/
 
   function advanceFrame() {
 

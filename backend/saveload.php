@@ -116,6 +116,8 @@
 					$stmt->bindValue(3, $gold, PDO::PARAM_INT);
 					$stmt->bindValue(4, $house);
 					$stmt->bindValue(5, $_SESSION['uid']);
+
+					$stmt->execute();
 			    } 
 			    catch (PDOException $e) {
 			  		echo "The site database is unavailable right now. Please return later.";
