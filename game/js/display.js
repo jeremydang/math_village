@@ -741,7 +741,9 @@ class Map extends DisplayObject {
 
     for( let layerIdx = 0; layerIdx < this.layers.length; layerIdx ++){
 
-      if(this.layers[layerIdx].type === "tilelayer"){
+      if(this.layers[layerIdx].type !== "tilelayer") continue;
+
+      else{
         let data = this.layers[layerIdx].data;
         let dataLength = data.length;
 
@@ -760,24 +762,45 @@ class Map extends DisplayObject {
                                   worldX, worldY, this.tileWidth, this.tileHeight)
         }
       }
-      //This is object layer used for collision checking
+    }
+  }
+
+  addCollision(){
+
+    for( let layerIdx = 0; layerIdx < this.layers.length; layerIdx ++){
+
+      if(this.layers[layerIdx].type !== "objectgroup") continue;
+
       else{
 
-        let objects = this.layers.objects;
+        let objects = this.layers[layerIdx].objects;
 
-        if(this.layers.name === "collision"){
+        if(this.layers[layerIdx].name === "collision"){
 
           for(let i = 0; i < objects.length; i++){
 
-            this.collisionObj.push(objects[i]);
+            let obj = new DisplayObject();
+
+            obj.setSize(objects[i].width, objects[i].height);
+
+            obj.setPosition(objects[i].x, objects[i].y);
+
+            this.collisionObj.push(obj);
+
           }
         }
 
-        else if(this.layers.name === "chair"){
+        else if(this.layers[layerIdx].name === "chair"){
 
           for(let i = 0; i < objects.length; i++){
 
-            this.chairObj.push(objects[i]);
+            let obj = new DisplayObject();
+
+            obj.setSize(objects[i].width, objects[i].height);
+
+            obj.setPosition(objects[i].x, objects[i].y);
+
+            this.chairObj.push(obj);
           }
         }
       }
@@ -996,91 +1019,115 @@ export function sprite(source, x, y) {
 Character & NPC sprite
 */
 
+class Character extends Sprite{
+  constructor(source, x, y, name = ""){
+
+    super(source, x, y);
+
+    Object.assign(this, {name});
+
+    this.states = {
+      up: 10,
+      left: 4,
+      down: 1,
+      right: 7,
+      walkUp: [9, 11],
+      walkLeft: [3, 5],
+      walkDown: [0, 2],
+      walkRight: [6, 8]
+    }
+
+    this.fps = 12;
+
+  }
+}
+
 export function character(source, x, y, name) {
 
-  let sprite = new Sprite(source, x, y);
+  let sprite = new Character(source, x, y);
 
-  sprite.name = name;
-
-  sprite.state = {
-    up: 10,
-    left: 4,
-    down: 7,
-    right: 1,
-    walkUp: [9, 11],
-    walkLeft: [3, 5],
-    walkDown: [0, 2],
-    walkRight: [6, 8]
-  }
+  addStatePlayer(sprite);
 
   return sprite;
 }
 
 export function npc(source, x, y, fs, moodImg) {
 
-  let faceset = sprite(stripFrames (fs, 96, 96))
+  let sprite = new Character(source, x, y);
 
-  let sprite = character(source, x, y);
+  addStatePlayer(sprite);
 
-  sprite.faceset = faceset;
+  sprite.faceset = fs;
 
   sprite.orders = [];
 
-  sprite.price = undefined;
+  sprite.price = 0;
 
-  sprite.moodBar = 80;
+  sprite.moodBar = 100;
 
   if(moodImg){
 
     moodImg.forEach( (mood) => {
 
-      let property = mood.name.replace(/.[^.]+$/,'');
-      sprite[property] = sprite(stripFrames(mood,48,48)); 
+      let property = mood.name;
+      sprite[property] = mood; 
 
     });
 
   }
 
-  sprite.moodState = undefined;
+  sprite.moodState = sprite.attentionMood;
 
   sprite.tasks = {
+    enter:false,
     checked: false,
     calculatePrice: false,
     assignSeat: false,
-    deliverFood: false
-  }
-
-  sprite.increaseMoodBar = (value) => this.moodBar += value;
-
-  sprite.decreaseMoodbar = (value) => this.moodBar -= value;
-
-  sprite.updateMooodState = () => {
-
-    if(this.tasks.checked){
-
-      if(this.moodBar >= 80){
-        this.moodState = this.happyMood;
-      }
-      else if (this.moodBar >= 60 && this.moodBar < 80){
-        this.moodState = this.neutralMood;
-      }
-      else if (this.moodBar >= 40 && this.moodBar < 60){
-        this.moodState = this.annoyMood;
-      }
-      else{
-        this.moodState = this.angryMood;
-      }
-    }
-
-    else{
-      this.moodState = this.attentionMood;
-    }
-
-    this.moodState.play();
-
+    deliverFood: false,
+    end: false
   };
-  
 
+  sprite.increaseMoodBar = () => sprite.moodBar += 20;
+
+  sprite.decreaseMoodBar = () => sprite.moodBar --;
+
+  sprite.updateMoodState = () => {
+
+    if(sprite.tasks.enter){
+
+        if(sprite.tasks.checked === true){
+
+          sprite.moodState.visible = false;
+
+          if(sprite.moodBar >= 80){
+            sprite.moodState = sprite.happyMood;
+          }
+          else if (sprite.moodBar >= 60 && sprite.moodBar < 80){
+            sprite.moodState = sprite.neutralMood;
+          }
+          else if (sprite.moodBar >= 40 && sprite.moodBar < 60){
+            sprite.moodState = sprite.annoyMood;
+          }
+          else{
+            sprite.moodState = sprite.angryMood;
+          }
+        }
+
+        else{
+          sprite.moodState = sprite.attentionMood;
+        }
+
+        sprite.moodState.visible = true;
+
+        sprite.moodState.play();
+
+
+      };
+
+    }
+
+    
+  
   return sprite;
 }
 
@@ -1110,6 +1157,7 @@ CareerHouse
 
 class CareerHouse extends Sprite {
   constructor(source, x = 0, y = 0, name, description, difficulty, materials = []) {
+
     super(source, x, y);
 
     Object.assign(this, {name,description,difficulty, materials});
@@ -1120,7 +1168,9 @@ class CareerHouse extends Sprite {
 
     this._skillPoints = 0 ;
 
-    this.currentMaterial = [];
+    this.currentFrequency = 1800;
+
+    this.currentRequiredPoints = 300;
 
   }
 
@@ -1153,82 +1203,109 @@ class CareerHouse extends Sprite {
   }
 
   set currentLevel(level){
-    if(typeof value === "object"){
-      this._currentLevel = value;
-    }
-    else{
-      console.log("Wrong type assigning for currentLevel");
-    }
+
+      this._currentLevel = level;
+
   }
 
   createMaterial(source, price, stock){
 
-    let material = sprite(source);
+    let material = new Sprite(source);
+
+    material.name = source.name.replace(/-/g, " ")
 
     material.price = price;
 
     material.stock = stock;
 
-    material.price = () => {return material.price};
-
-    material.price = (value) => {material.price = value};
-
-    material.stock = () => {return material.stock};
-
-    material.stock = (value) => {material.stock = value};
-
     return material;
   }
 
-  createLevel(number, requiredPoints){
+  createLevel(number){
 
     let level = {};
 
-    Object.assign(level, {number, requiredPoints});
+    level.number = number;
 
-    level.NPCfrequency = Math.round(8000 / level.number + 7000) ;
+    level.materials = [];
 
-    if(level.number === 1){
+    level.maxOrder = level.number + 1;
 
-      level.maxOrder = 3;
+    const pointsPerDay = 10;
 
-      let numberMaterial = 5;
+    const stock = 50;
+
+
+    if(number === 1){
+
+      level.NPCfrequency = this.currentFrequency;
+
+      level.requiredPoints = this.currentRequiredPoints;
+
+      level.pointsPerDay = pointsPerDay;
+
+      level.maxMaterial = 10;
+
     }
     else{
 
-      level.maxOrder = level.number ++;
+      level.NPCfrequency = this.currentFrequency - number * 60 ;
 
-      let numberMaterial = level.number ++;
+      level.requiredPoints = this.currentRequiredPoints + 150 * Math.pow(number, number);
+
+      level.pointsPerDay = pointsPerDay + number;
+
+      level.maxMaterial = number * 7;
+
     }
 
-    let stock = 50;
+    this.currentFrequency = level.NPCfrequency;
+
+    this.currentRequiredPoints = level.requiredPoints;
+
 
     let i = 0;
 
     let previousIdx = [];
 
-    while(i < numberMaterial) {
+    let sameMaterial = false;
 
-      let materialIdx = randomInt(0, this.materials.length);
+    while(i < level.maxMaterial) {
+
+      let materialIdx = randomInt(0, this.materials.length -1);
 
       for( let i2 = 0; i2 < i; i2 ++){
-        if (materialIdx === previousIdx[i2]) continue;
+
+        if (materialIdx === previousIdx[i2]) {
+
+          sameMaterial = true;
+
+          break;
+        }
+
       }
 
-      previousIdx.push(materialIdx);
+      if(sameMaterial === false){
 
-      let price = Number (randomFloat(2,5).toFixed(2));
+        previousIdx.push(materialIdx);
 
-      let newMaterial = this.createMaterial(materials[materialIdx], price, stock);
+        let price = parseFloat(randomFloat(2,5).toFixed(1));
 
-      this.currentMaterial.push(newMaterial);
+        let newMaterial = this.createMaterial(this.materials[materialIdx], price, stock);
 
-      this.materials.splice(materialIdx,1);
+        level.materials.push(newMaterial);
 
-      i ++;
+        i ++;
+
+      }
+      else{
+        sameMaterial = false;
+      }
+
     }
 
     return level;
+
 
   }
 }
@@ -1274,6 +1351,19 @@ export function frames(source, arrayOfPositions, width, height) {
   o.height = height;
   return o;
 };
+
+/*
+Create random number
+*/
+
+export let randomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export let randomFloat = (min, max) => {
+  return min + Math.random() * (max - min);
+}
+
 
 /*
 Function to create an array of coordinate points 
@@ -1514,7 +1604,7 @@ function makeInteractive(o, offsetX, offsetY) {
         else{
           o.scaleX = 1;
           o.scaleY = 1;
-          o.alpha = 0.9;
+          o.alpha = 0.8;
         }
 
       }
@@ -1624,6 +1714,8 @@ function addStatePlayer(sprite) {
       endFrame = 0,
       timerInterval = undefined;
 
+  sprite.hasStarted = false;    
+
   //Display static states.
   function show(frameNumber) {
     reset();
@@ -1647,34 +1739,39 @@ function addStatePlayer(sprite) {
 
   //Play a sequence of frames.
   function playSequence(sequenceArray) {
-    reset();
+    if(!sprite.hasStarted){
 
-    startFrame = sequenceArray[0];
-    endFrame = sequenceArray[1];
-    numberOfFrames = endFrame - startFrame;
+      reset();
 
-    //Compensate for two edge cases:
-    //1. If the `startFrame` happens to be `0`
-    if (startFrame === 0) {
-      numberOfFrames += 1;
-      frameCounter += 1;
+      startFrame = sequenceArray[0];
+      endFrame = sequenceArray[1];
+      numberOfFrames = endFrame - startFrame;
+
+      //Compensate for two edge cases:
+      //1. If the `startFrame` happens to be `0`
+      if (startFrame === 0) {
+        numberOfFrames += 1;
+        frameCounter += 1;
+      }
+
+      //2. If only a two-frame sequence was provided
+      if(numberOfFrames === 1){
+        numberOfFrames = 2;
+        frameCounter += 1;
+      };
+
+      if (!sprite.fps) sprite.fps = 12;
+      let frameRate = 1000 / sprite.fps;
+
+      sprite.gotoAndStop(startFrame);
+
+      if(!sprite.playing) {
+        timerInterval = setInterval(advanceFrame.bind(this), frameRate);
+        sprite.playing = true;
+      }
+
     }
-
-    //2. If only a two-frame sequence was provided
-    if(numberOfFrames === 1){
-      numberOfFrames = 2;
-      frameCounter += 1;
-    };
-
-    if (!sprite.fps) sprite.fps = 12;
-    let frameRate = 1000 / sprite.fps;
-
-    sprite.gotoAndStop(startFrame);
-
-    if(!sprite.playing) {
-      timerInterval = setInterval(advanceFrame.bind(this), frameRate);
-      sprite.playing = true;
-    }
+    
   }
 
 

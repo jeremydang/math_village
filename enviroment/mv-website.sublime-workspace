@@ -151,31 +151,7 @@
 			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
 			"settings":
 			{
-				"buffer_size": 11804,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
-			"settings":
-			{
-				"buffer_size": 34626,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/interactive.js",
-			"settings":
-			{
-				"buffer_size": 6461,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/setup.js",
-			"settings":
-			{
-				"buffer_size": 2892,
+				"buffer_size": 41175,
 				"line_ending": "Windows"
 			}
 		},
@@ -188,35 +164,11 @@
 			}
 		},
 		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
-			"settings":
-			{
-				"buffer_size": 4221,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/utilities.js",
-			"settings":
-			{
-				"buffer_size": 2699,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
 			"settings":
 			{
 				"buffer_size": 8094,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/css/styles.css",
-			"settings":
-			{
-				"buffer_size": 663,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -324,15 +276,21 @@
 	],
 	"file_history":
 	[
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
-		"/E/SOFTWARE PROJECT 1/math_village/js/main.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/game.php",
 		"/E/SOFTWARE PROJECT 1/math_village/game/css/styles.css",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/interactive.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/sound.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/utilities.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/setup.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/interactive.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/collision.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
+		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/CanvasInput/CanvasInput.js",
+		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/agd/library/collision.js",
+		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/agd/library/utilities.js",
+		"/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
+		"/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/sound.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/ultitilies.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/plugins/traceur-compiler/README.md",
@@ -342,7 +300,6 @@
 		"/E/SOFTWARE PROJECT 1/math_village/signup.html",
 		"/E/SOFTWARE PROJECT 1/math_village/contact.php",
 		"/E/SOFTWARE PROJECT 1/math_village/backend/submit.php",
-		"/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
 		"/E/SOFTWARE PROJECT 1/math_village/js/login.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/gamejs/setup.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/gamejs/maingame.js",
@@ -437,6 +394,58 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"displayInstruc",
+			"helpClose",
+			"InnInstruct",
+			"displayIn",
+			"displayInstruct",
+			"timeTick",
+			"incorrect",
+			"npc",
+			"});\n",
+			"noBtn",
+			"parent",
+			" npcArray",
+			"npc",
+			"music",
+			"dialogArray",
+			"music",
+			"panel",
+			"yesNode",
+			"yesBtn",
+			"orderDialog",
+			"innScene",
+			"displayInst",
+			"npc",
+			"moodSp",
+			"this",
+			"npc",
+			"character",
+			"elf",
+			"map",
+			"alpha",
+			"character",
+			"cha",
+			"randomInt",
+			"sprite(",
+			"character",
+			"new Sprite",
+			"currentLv",
+			"currentLevel",
+			"bar",
+			"spritesheet",
+			"Panel",
+			"Arrow",
+			"materials",
+			"elf",
+			"map",
+			"false",
+			"offSet",
+			"helpBtn",
+			"backMenuBtn",
+			"setSize",
+			"sprite",
+			"skillPoints",
 			"menuScene",
 			"Tahoma",
 			"panel",
@@ -512,41 +521,7 @@
 			"div",
 			">\n",
 			"mvlogo.png",
-			"p",
-			"in",
-			"Sign",
-			">\n",
-			"	        <li><a href=\"#\">Sign in</a></li>\n",
-			">\n",
-			".btn-lg",
-			"button",
-			"animation_demo_canvas",
-			"flying_shell",
-			"run",
-			":230",
-			"flying_shell",
-			"gun",
-			"fire",
-			"gun",
-			";\n",
-			"if",
-			"thanh",
-			"than",
-			"thanh",
-			"afdsafsa",
-			"src",
-			"img",
-			"src",
-			">\n",
-			"thanh",
-			">\n",
-			"\n<",
-			"img",
-			"\n<",
-			"Jump",
-			"<p>",
-			"\n<",
-			"thanh"
+			"p"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -574,25 +549,26 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11804,
+						"buffer_size": 41175,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10619,
-								11756
+								3517,
+								3440
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
 							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 9995.0,
+						"translation.y": 2320.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -600,102 +576,6 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 34626,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30195,
-								30195
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 11734.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/interactive.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6461,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2717,
-								2717
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1120.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/setup.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2892,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2182,
-								2182
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 240.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
 					"semi_transient": false,
 					"settings":
@@ -718,78 +598,15 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 1600.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4221,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3698,
-								3698
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
 						"translation.x": 0.0,
-						"translation.y": 2080.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/utilities.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2699,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2699,
-								2699
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2320.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
+					"buffer": 2,
 					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
 					"semi_transient": false,
 					"settings":
@@ -814,39 +631,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6374.0,
+						"translation.y": 2878.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/css/styles.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 663,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30,
-								40
-							]
-						],
-						"settings":
-						{
-							"git_gutter_enabled": true,
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

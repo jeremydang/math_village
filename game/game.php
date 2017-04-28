@@ -23,6 +23,8 @@
 	<!--font-google-->
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
+	<script src="plugins/castorGUI.min.js"></script>
+
 
 </head>
 
@@ -33,6 +35,7 @@
 
 	<script src="plugins/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
 	<script src="plugins/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
+
 	<script src="js/maingame.js" type="module"></script>
 	<script>traceur.options.experimental = true;</script>
 </body>

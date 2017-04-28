@@ -9,7 +9,6 @@ let mv = setup(
     "images/village-map.json",
     "images/inn-map.json",
     "sounds/menu-bg.ogg",
-    "sounds/inn-bg.mp3",
     "sounds/cursor-fx.ogg",
     "sounds/ok-fx.ogg",
     "sounds/cancel-fx.ogg",
@@ -22,7 +21,10 @@ let mv = setup(
 
 mv.start();
 
-let music, careerHouse, innHouse, cookingHouse, hospitalHouse, player;
+let villageMusic, careerHouse, innHouse, cookingHouse, 
+hospitalHouse, currentHouse, player, uiBar;
+
+currentHouse = null;
 
 
 let logoSource = new Image();
@@ -42,9 +44,9 @@ mv.fadeIn(logo);
 
 function initialize(){
 
-	music = mv.assets["menu-bg.ogg"];
+	villageMusic = mv.assets["menu-bg.ogg"];
 
-	music.loop = true;
+	villageMusic.loop = true;
 
 	//Create career house object and push to array 
 
@@ -122,6 +124,9 @@ function initialize(){
 			if(!playerData.house){
 				playerData.house = careerHouse;
 			}
+/*			else{
+				careerHouse = Object.assign(careerHouse, playerData.house);
+			}*/
 
 			playerData.gold = Number(playerData.gold);
 
@@ -197,7 +202,10 @@ function menu(){
 
 		mv.stage.addChild(menuScene);
 
-		if (!music.playing) music.play();
+		if (!villageMusic.playing) {
+
+			villageMusic.play();
+		}
 
 		playBtn.release = () => {
 
@@ -205,16 +213,20 @@ function menu(){
 
 				window.setInterval(function(){
 
-					mv.saveData(player)
+					player.house = careerHouse;
 
-				}, 600000);
+					mv.saveData(player);
 
-/*				window.onbeforeunload = () =>{
+				}, 300000);
+
+				window.onbeforeunload = () =>{
+
+					player.house = careerHouse;
 
 					mv.saveData(player);
 
 					return "We are saving game data now. Please wait a few seconds and retry.";
-				}*/
+				}
 
 				menuScene.visible = false;
 
@@ -284,11 +296,15 @@ function createCharacter(menuScene){
 
 			window.setInterval(function(){
 				
-				mv.saveData(player)
+				player.house = careerHouse;
 
-			}, 600000);
+				mv.saveData(player);
+
+			}, 300000);
 
 			window.onbeforeunload = (e) =>{
+
+				player.house = careerHouse;
 
 				mv.saveData(player);
 
@@ -477,8 +493,6 @@ function enterVillage(){
 		hospitalHouse.interactive = false;
 
 
-		let currentHouse = null;
-
 
 		let expBar = mv.sprite(mv.assets["exp-bar"], 17, 0);
 
@@ -490,6 +504,8 @@ function enterVillage(){
 
 		expBar.addChild(expNode);
 
+		expBar.node = expNode;
+
 
 		let goldBar = mv.sprite(mv.assets["gold-bar"], 242, 0);
 
@@ -500,6 +516,8 @@ function enterVillage(){
 		let goldNode = mv.text(String(player.gold), "18px KomikaAxis", "white", 144, 29);
 
 		goldBar.addChild(goldNode);
+
+		goldBar.node = goldNode;
 
 
 		let lvBarArray = [];
@@ -528,13 +546,24 @@ function enterVillage(){
 
 		curLvBar.addChild(pointNode);
 
+		curLvBar.node = pointNode;
+
+
+		uiBar = mv.group(goldBar, expBar, curLvBar);
+
+		uiBar.goldBar = goldBar;
+
+		uiBar.expBar = expBar;
+
+		uiBar.levelBar = curLvBar;
+
 
 		careerHouse.forEach( house => {
 
 			if(house.chosen === true){
 				if(house.currentLevel){
 					lvBarArray.forEach ( bar => {
-						if(bar.number === house.currentLevel.number){
+						if(house.currentLevel.number === bar.number){
 
 							curLvBar.visible = false;
 
@@ -546,8 +575,6 @@ function enterVillage(){
 				}
 
 				pointNode.content = String(house.skillPoints);
-
-				pointNode.visible = true;
 
 				currentHouse = house;
 
@@ -582,24 +609,47 @@ function enterVillage(){
 
 					house.chosen = true;
 
-					let arrayText = [
+					house.gotoAndStop(0);
 
-					 "You have choose " + house.name + " as your favourite place to be with !/n" +
-					 "Double click again to the house to start working now./n" +
-					 "If you have made a mistake, you can choose again. Don't worry !"
-					];
+					currentHouse = house;
 
-					villageMap.children.forEach( element => {
+					if(house.currentLevel){
+						lvBarArray.forEach ( bar => {
+							if(house.currentLevel.number === bar.number){
 
-						if (element.sound){
-							if(element.interactive === true){
-								element.interactive = false;
+								curLvBar.visible = false;
+
+								curLvBar = bar;
+
+								curLvBar.visible = true;
 							}
-						}
-					});
+						})
+					}
 
+					pointNode.content = String(house.skillPoints);
 
-					displayInstruct(villageMap, arrayText, "viInstruct2", true, 0);
+					if(!villageMap.children.find( element => element.name === "viInstruct2")){
+
+						let arrayText = [
+
+						 "You have choose " + house.name + " as your favourite place to be with !/n" +
+						 "Double click again to the house to start working now./n" +
+						 "If you have made a mistake, you can choose again. Don't worry !"
+						];
+
+						villageMap.children.forEach( element => {
+
+							if (element.sound){
+								if(element.interactive === true){
+									element.interactive = false;
+								}
+							}
+						});
+
+						displayInstruct(villageMap, arrayText, "viInstruct2", true, 0, mv.assets["main-mentor"]);
+
+					}
+					
 				}
 				else{
 
@@ -619,9 +669,8 @@ function enterVillage(){
 					});
 
 					let text = "Are you ready to/nstart your job now?";
-					displayConfirm(text, prepareInnHouse, villageMap)
+					displayConfirm(text, prepareHouse, villageMap)
 				}
-
 
 			}
 
@@ -674,7 +723,7 @@ function enterVillage(){
 			});
 
 
-			displayInstruct(villageMap, arrayText, "viInstructShort", false);
+			displayInstruct(villageMap, arrayText, "viInstructShort", false, 0, mv.assets["main-mentor"]);
 
 		}
 
@@ -682,7 +731,7 @@ function enterVillage(){
 
 
 		villageMap.add(cookingHouse, innHouse, hospitalHouse,
-			goldBar, expBar, curLvBar, backMenuBtn, helpBtn);
+			uiBar, backMenuBtn, helpBtn);
 
 
 		if(!currentHouse){
@@ -714,7 +763,7 @@ function enterVillage(){
 				}
 			});
 
-			displayInstruct(villageMap, arrayText, "villageInstruct1", true);
+			displayInstruct(villageMap, arrayText, "villageInstruct1", true, 400, mv.assets["main-mentor"]);
 		}
 		else{
 
@@ -853,11 +902,27 @@ function displayConfirm(text, okMethod, scene){
 
 		yesBtn.sound = mv.assets["ok-fx.ogg"];
 
-		yesBtn.release = okMethod;
-
 		let yesNode = mv.text("Yes", "22px KomikaAxis", "white", 86, 18);
 
 		yesBtn.addChild(yesNode);
+
+		yesBtn.release = () =>{
+
+			panel.visible = false;
+
+			panel.children.forEach( element => {
+
+				if (element.sound){
+					if(element.interactive === true){
+						element.interactive = false;
+					}
+				}
+			});
+
+			scene.visible = false;
+
+			okMethod();
+		}
 
 
 		let noBtn = mv.button(mv.assets["red-button"], 273, 160)
@@ -894,7 +959,7 @@ function displayConfirm(text, okMethod, scene){
 			});
 		}
 
-		let confirmText = mv.multiText(text, "24px KomikaAxis", "#24313c", 260, 57, 30);
+		let confirmText = mv.multiText(text, "22px KomikaAxis", "#24313c", 260, 50, 35);
 
 
 		panel.add(yesBtn, noBtn, confirmText);
@@ -908,9 +973,929 @@ function displayConfirm(text, okMethod, scene){
 
 }
 
-function displayInstruct(scene, arrayText, dialogName, firstTime, timeout = 400){
+function displayInstruct(scene, arrayText, dialogName, firstTime, timeout = 400, frameMentor){
 
 	let dialog = scene.children.find( element => element.name === dialogName);
+
+	if(dialog){
+
+		dialog.visible = true;
+
+		dialog.children.forEach( element => {
+
+			if (element.sound){
+				if(element.interactive === false){
+					element.interactive = true;
+				}
+			}
+		});
+
+	}
+	else{
+
+		return new Promise(resolve => {
+
+			let dialog = mv.group();
+
+			dialog.name = dialogName;
+
+
+			let speechPanel = mv.sprite(mv.assets["speech-panel"]);
+
+			speechPanel.setSize(920, 200);
+
+			scene.putCenter(speechPanel, 0, 200);
+
+
+			let closeBtn = mv.button(mv.assets["no"]);
+
+			closeBtn.setSize(59,61);
+
+			speechPanel.putTop(closeBtn, 440, 40)
+
+			closeBtn.release = () => {
+
+				dialog.visible = false;
+
+				dialog.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+				scene.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === false){
+							element.interactive = true;
+						}
+					}
+				});
+
+				resolve();
+
+			}
+
+			closeBtn.sound = mv.assets["cursor-fx.ogg"]; 
+
+
+			let mentor = mv.sprite(frameMentor);
+
+			speechPanel.putTop(mentor, -300, 10);
+
+
+			let backBtn = mv.button(mv.assets["back"], 776, 544);
+
+			backBtn.setSize(55,57);
+
+			backBtn.release = () => {
+
+				let index = arrayText.indexOf(currentTextRaw);
+
+				if(index > 0){
+					index --;
+				}
+
+				currentTextRaw = arrayText[index];
+
+				currentText.setContent( currentTextRaw, 56, 40);
+
+				checkButton();
+
+			}
+
+			backBtn.sound = mv.assets["cursor-fx.ogg"];
+
+
+			let nextBtn = mv.button(mv.assets["next"], 850, 544);
+
+			nextBtn.setSize(55,57);
+
+			nextBtn.release = () => {
+
+				let index = arrayText.indexOf(currentTextRaw);
+
+				if(index < arrayText.length - 1){
+					index ++;
+				}
+
+				currentTextRaw = arrayText[index];
+
+				currentText.setContent( currentTextRaw, 56, 40);
+
+				checkButton();
+
+			}
+
+			nextBtn.sound = mv.assets["cursor-fx.ogg"];
+			
+
+			let currentTextRaw = arrayText[0];
+
+
+			let currentText = mv.multiText(currentTextRaw, "20px Georgia", "#24313c", 56, 40, 30);
+
+			currentText.setAlign("left");
+
+
+			speechPanel.addChild(currentText);
+
+			function checkButton(){
+
+				if(arrayText.length <= 1){
+
+					if(nextBtn.interactive === true) nextBtn.interactive = false;
+
+					nextBtn.visible = false;
+
+					if(backBtn.interactive === true) backBtn.interactive = false;
+
+					backBtn.visible = false;
+
+				}
+				else{
+
+					if(currentTextRaw === arrayText[0]){
+
+						if(backBtn.interactive === true) backBtn.interactive = false;
+
+						backBtn.visible = false;
+
+					}
+					else if(currentTextRaw === arrayText[arrayText.length - 1]){
+
+						if(nextBtn.interactive === true) nextBtn.interactive = false;
+
+						nextBtn.visible = false;
+
+					}
+					else{
+
+						backBtn.visible = true;
+
+						nextBtn.visible = true;
+
+						if(backBtn.interactive === false){
+							backBtn.interactive = true;
+						}
+
+
+						if(nextBtn.interactive === false){
+							nextBtn.interactive = true;
+						}
+
+					}
+
+				}
+
+			};
+
+			checkButton();
+
+
+			if(firstTime){
+
+				speechPanel.alpha = 0;
+
+				mentor.alpha = 0;
+
+				currentText.alpha = 0;
+
+				nextBtn.interactive = false;
+
+				closeBtn.interactive = false;
+
+				nextBtn.alpha = 0;
+
+				closeBtn.alpha = 0;
+
+
+				mv.wait(timeout).then( () =>{
+
+					mv.fadeIn(mentor,  30);
+
+					mv.slide(mentor, mentor.x, speechPanel.y - mentor.height, 30);
+
+					mv.fadeIn(speechPanel, 30);
+
+					mv.fadeIn(currentText, 30);
+
+					mv.fadeIn(closeBtn, 30);
+
+					mv.fadeIn(nextBtn, 30);
+
+					mv.assets["warn-fx.wav"].play();
+
+				})
+				.then ( () => {
+
+					nextBtn.interactive = true;
+
+					closeBtn.interactive = true;
+
+				});
+
+			}
+
+			dialog.add(mentor, speechPanel, closeBtn, nextBtn, backBtn);
+
+			scene.addChild(dialog);
+
+
+		});
+
+		
+		
+	}
+
+}
+
+let innScene, houseMap, character, shortInstruct = [], 
+npcArray = [], currentLevel, sceneBound, dialogArray, moodArray;
+
+
+let timeTick = 0,
+npcTick = 900, 
+startTick = 0,
+startTime = 8,
+endTime = 17;
+
+
+
+
+function prepareHouse(){
+
+	switch(currentHouse.name){
+
+		case "Inn House":
+			houseMap = mv.map(mv.assets["inn-map.json"], mv.assets["restaurant-tile.png"]);
+
+			houseMap.addCollision();
+
+			break;
+
+		case "Hospital House":
+
+		case "Cooking House":	
+	}
+
+	if(!houseMap) return;
+
+	else{
+
+		innScene = mv.group();
+
+
+		let cupboard = mv.button(mv.assets["cupboard2"], 192, 105);
+
+		if(cupboard.interactive === false){
+			cupboard.interactive = true;
+		}
+
+		cupboard.release = () => {
+			displayOrder ();
+		}
+
+		cupboard.sound = mv.assets["cursor-fx.ogg"];
+		
+
+		innScene.cupboard = cupboard;
+
+
+		let clockBar = mv.sprite(mv.assets["clock"], 687, 13);
+
+		let clockNode = mv.text("08:00", "18px KomikaAxis", "white", 85, 15);
+
+		clockBar.scaleX = 0.85;
+
+		clockBar.scaleY = 0.85;
+
+		clockBar.addChild(clockNode);
+
+		clockBar.clockNode = clockNode;
+
+		uiBar.addChild(clockBar);
+
+		uiBar.clockBar = clockBar;
+
+
+		let backMenuBtn = mv.button(mv.assets["mini-menu"], 895, 13);
+
+		backMenuBtn.setSize(55,55);
+
+		backMenuBtn.release = () => {
+
+			let confirmText = "Are you sure you want to quit?/nYour points will be lost."
+
+			innScene.children.forEach( element => {
+
+				if (element.sound){
+					if(element.interactive === true){
+						element.interactive = false;
+					}
+				}
+			});
+
+			displayConfirm(confirmText, backtoMenu, innScene);
+
+			function backtoMenu (){
+
+				innScene.visible = false;
+
+				innScene.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+				menu();
+			}
+
+		} 
+
+		backMenuBtn.sound = mv.assets["cursor-fx.ogg"];
+
+
+		let helpBtn = mv.button(mv.assets["question"], 895, 85);
+
+		helpBtn.setSize(55,55);
+
+		helpBtn.release = () => {
+
+			if(shortInstruct.length > 0){
+
+				innScene.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+				displayInstruct(innScene, shortInstruct, "viInstructShort", false, 0, mv.assets["main-mentor"]);
+
+			}
+
+		}
+
+		helpBtn.sound = mv.assets["cursor-fx.ogg"];
+
+
+		let inventoryBtn = mv.button(mv.assets["info"], 895, 155);
+
+		inventoryBtn.setSize(55,55);
+
+		inventoryBtn.release = () => {
+
+			if(shortInstruct.length > 0){
+
+				innScene.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+
+				displayInventory();
+
+			}
+
+		}
+
+		inventoryBtn.sound = mv.assets["cursor-fx.ogg"];
+
+
+
+		let charId = player.characterId;
+
+		let charFrames = mv.stripFramesAtlas(
+			mv.assets[charId], 
+			mv.assets["spritesheet.json"],
+			mv.assets["spritesheet.png"], 32, 48);
+
+
+		character = mv.character(charFrames, 256, 200, charId);
+
+		character.scaleX = 1.2;
+
+		character.scaleY = 1.2;
+
+		character.show(character.states.down);
+
+
+
+		dialogArray = mv.group();
+
+		moodArray = mv.group();
+
+		innScene.add(houseMap, uiBar, cupboard, character, backMenuBtn, helpBtn, 
+			inventoryBtn, dialogArray, moodArray);
+
+		innScene.calculateSize();
+
+
+
+		let leftKey = mv.keyboard(65),
+		      upKey = mv.keyboard(87),
+		      rightKey = mv.keyboard(68),
+		      downKey = mv.keyboard(83);
+
+		  leftKey.press = function() {
+		    character.playSequence(character.states.walkLeft);
+		    character.vx = -5;
+		    character.vy = 0;
+		  };
+
+		  leftKey.release = function() {
+		    if (!rightKey.isDown && character.vy === 0) {
+		      character.vx = 0;
+		      character.show(character.states.left);
+		    }
+		  };
+
+		  upKey.press = function() {
+		    character.playSequence(character.states.walkUp);
+		    character.vy = -5;
+		    character.vx = 0;
+		  };
+
+		  upKey.release = function() {
+		    if (!downKey.isDown && character.vx === 0) {
+		      character.vy = 0;
+		      character.show(character.states.up);
+		    }
+		  };
+
+		  rightKey.press = function() {
+		    character.playSequence(character.states.walkRight);
+		    character.vx = 5;
+		    character.vy = 0;
+		  };
+
+		  rightKey.release = function() {
+		    if (!leftKey.isDown && character.vy === 0) {
+		      character.vx = 0;
+		      character.show(character.states.right);
+		    }
+		  };
+
+		  downKey.press = function() {
+		    character.playSequence(character.states.walkDown);
+		    character.vy = 5;
+		    character.vx = 0;
+		  };
+
+		  downKey.release = function() {
+		    if (!upKey.isDown && character.vx === 0) {
+		      character.vy = 0;
+		      character.show(character.states.down);
+		    }
+		  };
+
+		if(!currentHouse.currentLevel){
+
+		  	currentHouse.currentLevel = currentHouse.createLevel(1);
+		  }
+
+	  	currentLevel = currentHouse.currentLevel;
+
+
+	  	
+
+	  	sceneBound = mv.group();
+
+	  	sceneBound.setSize(mv.stage.width -64, mv.stage.height -32);
+
+	  	sceneBound.setPosition(32,96);
+
+	  	// npcTick = currentLevel.NPCfrequency;
+
+
+	  	mv.stage.addChild(innScene);
+
+	  	if(player.gold === 0){
+
+	  		let arrayText = [
+	  		"Hi, " + player.name + "! Welcome to Inn House !" + 
+	  		"/nAs you are new here, I will be your mentor.",
+
+	  		"If you need any help, just click the Help icon on the top right of the screen./n" +
+	  		"I will be right there.",
+
+	  		 "Now let's welcome our first customer./n" +
+	  		 "You will get used to the job soon !"
+	  		];
+
+	  		innScene.children.forEach( element => {
+
+	  			if (element.sound){
+	  				if(element.interactive === true){
+	  					element.interactive = false;
+	  				}
+	  			}
+	  		});
+
+	  		displayInstruct(innScene, arrayText, "innInstruct", true, 0,  mv.assets["inn-mentor"]).then( () =>{
+	  			mv.state = innGame;
+	  		})
+		}
+
+
+	}
+
+}
+
+
+
+
+function innGame(){
+
+	character.x += character.vx;
+
+	character.y += character.vy;
+
+	mv.contain(character, sceneBound);
+
+	for(let i = 0; i < houseMap.collisionObj.length; i ++){
+		mv.rectangleCollision(character,  houseMap.collisionObj[i]);
+	}
+
+	if(startTick > 60){
+
+		if(timeTick === 1800){
+
+			if(startTime < endTime){
+
+				startTime ++;
+
+				if(startTime < 10){
+					uiBar.clockBar.clockNode.content = "0" + startTime + ":00";
+				}
+				else{
+					uiBar.clockBar.clockNode.content = startTime + ":00";
+				}
+
+				timeTick = 0;
+
+			}
+
+		}
+
+		if(npcTick === 900){
+
+			let npc = createNPC();
+
+			npcArray.push(npc);
+
+			npcTick = 0;
+
+		}
+
+		timeTick ++;
+
+		npcTick ++;
+	}
+
+	else{
+		startTick ++;
+	}
+
+	for(let i = 0; i < npcArray.length; i ++){
+
+		let npc = npcArray[i];
+
+		if(!npc.tasks.enter){
+
+			if(npc.x < 256){
+
+				if( i > 0){
+					let collision = mv.hitTestRectangle(npc, npcArray[i-1]);
+ 
+					if(collision){
+						npc.vx = 0;
+						npc.show(npc.states.up)
+
+						npc.hasStarted = false;
+					}
+					else{
+						npc.playSequence(npc.states.walkRight);
+
+						npc.hasStarted = true;
+
+						npc.vx = 2;
+						npc.vy = 0;
+					}
+				}
+				else{
+					npc.playSequence(npc.states.walkRight);
+
+					npc.hasStarted = true;
+
+					npc.vx = 2;
+					npc.vy = 0;
+				}
+
+			}
+			else{
+
+				if(npc.y === 320) npc.hasStarted = false;
+
+				if(npc.y > 288 ){
+
+					if( i > 0){
+						let collision = mv.hitTestRectangle(npc, npcArray[i-1]);
+
+						if(collision){
+							npc.vy = 0;
+
+							npc.show(npc.states.up);
+
+							npc.hasStarted = false;
+						}
+						else{
+
+							npc.playSequence(npc.states.walkUp);
+
+							npc.hasStarted = true;
+
+							npc.vy = -2;
+							npc.vx = 0;
+						}
+					}
+					else{
+
+						npc.playSequence(npc.states.walkUp);
+
+						npc.hasStarted = true;
+
+						npc.vy = -2;
+						npc.vx = 0;
+					}
+
+				}
+				else{
+
+					npc.show(npc.states.up);
+					npc.vx = 0;
+					npc.vy = 0;
+
+					npc.tasks.enter = true;
+
+					window.setInterval(npc.decreaseMoodBar, 1000);
+				}
+			}
+		}
+		else if(npc.tasks.enter && !npc.tasks.checked){
+
+			if(npc.interactive === false){
+				npc.interactive = true;
+			}
+
+			npc.release = () => {
+
+				innScene.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+				displayDialog(npc.orderText, npc , npc.name, 
+					innScene, "Calculate", displayCalculation );
+
+				mv.assets["warn-fx.wav"].play();
+
+				npc.tasks.checked = true;
+
+
+			}
+
+		}
+		else if(npc.tasks.calculatePrice && !npc.tasks.end){
+
+			let dialog2 = displayDialog(npc.endText, npc , npc.name + "end", 
+					innScene);
+
+			if(!npc.tasks.assignSeat){
+
+				mv.assets["warn-fx.wav"].play();
+
+				mv.assets["coin-fx.ogg"].play();
+
+				let curGold = Number(uiBar.goldBar.node.content) ;
+
+				curGold += npc.price;
+
+				uiBar.goldBar.node.content = curGold;
+
+				player.gold += npc.price;
+
+				npc.tasks.assignSeat = true;
+
+			}
+
+
+				mv.fadeOut(dialog2, 60);
+
+				mv.fadeOut(npc.moodState, 60);
+
+				let tween = mv.fadeOut(npc, 60);
+
+				tween.oncomplete = () =>{
+
+					npc.setPosition(-50, 320);
+				}
+
+				npcArray.splice(npcArray.indexOf(npc), 1);
+
+				npc.tasks.end = true;
+
+
+		}
+
+
+		npc.x += npc.vx;
+
+		npc.y += npc.vy;
+
+		npc.moodState.setPosition(npc.x, npc.y -50);
+
+		npc.updateMoodState();
+
+	}
+
+
+
+
+}
+
+function createNPC(){
+
+	let name = ["Sam","Addison","Felix","Jackie","Alexis",
+				"Bailey","Casey","Connor","Dakota","Dallas",
+				"Devon","Evan","Harley","Jade","Jamie",
+				"Jan","Jessie","Jude","Julian","Jordan",
+				"Delta", "Kendall", "Kim", "Lesley", "Paris",
+				"Madison", "Barney", "Marley" , "Riley", "Robin",
+				"Ryan", "Regan", "Skye", "Sage", "Silver",
+				"Taylor", "Terry", "Tyler", "Zane", "June",
+				"April", "Avery", "Chris", "Corey", "Corbin",
+				"Cyan", "Devon", "Drew", "Norris", "Noa"] ;
+
+	let orderText = ["Hello, I would like to take ",
+					"Good morning, please give me ",
+					"Hi, today I want ",
+					"Morning, do you have ?",
+					"Hi, I want to order ",
+					"Hi, how are you? I want ",
+					"Hello, I will take ",
+					"Good morning, I am thinking of ",
+					"Please, I need ",
+					"Hi, I would prefer "];
+
+	let annoyText = ["Hurry up. I can’t stand here all day!",
+					"Come one. I don’t have a whole day to wait.",
+					"I’m pissed. Bring me my food!",
+					"What takes you so long? Hurry up!",
+					"What a service! I can’t stand it.",
+					"I’m running out of time. Quick quick!",
+					"Be on your toe! Hurry up !",
+					"I’m really late. Please hurry!",
+					"Where is my food? What are you doing?",
+					"So terrible! I have enough!"];
+
+	let endText = ["Thanks for your service. Have a nice day.",
+					"Thanks, have a nice day.",
+					"You make my day. Thanks.",
+					"Thank you. Goodbye.",
+					"Yummy, yummy. Thanks a lot.",
+					"Thank you. You are very nice. I will come again.",
+					"Thank you.",
+					"So quick. Good job. Thank you very much.",
+					"Thanks a lot. Good bye.",
+					"I love the smell. Yummy. Thank you very much."] ;
+
+	let textRandomNum = mv.randomInt(0, 9)	;
+
+	let nameRandomNum = mv.randomInt(0, name.length-1);	
+
+	let moodSprite = [];
+
+
+	let moodImg = [mv.assets["happyMood"], mv.assets["neutralMood"],
+	mv.assets["annoyMood"], mv.assets["angryMood"], mv.assets["attentionMood"]];
+
+
+	moodImg.forEach( (source) => {
+
+		let moodFrame = mv.stripFramesAtlas(
+			source, 
+			mv.assets["gui.json"],
+			mv.assets["gui.png"], 48, 48);
+
+		let mood = mv.sprite(moodFrame);
+
+		mood.name = source.name;
+
+		mood.fps = 8;
+
+		mood.visible = false;
+
+		moodArray.addChild(mood);
+
+		moodSprite.push(mood);
+
+	});
+
+
+	let npcRandomNum = mv.randomInt(1, 16)		
+
+	let npcId = "npc" + npcRandomNum + "-sprite";
+
+	let npcFrame = mv.stripFramesAtlas(
+	  			mv.assets[npcId], 
+	  			mv.assets["spritesheet.json"],
+	  			mv.assets["spritesheet.png"], 32, 48);
+	
+	let faceId = "npc" + npcRandomNum + "-face"	;
+
+	let faceFrame = mv.stripFramesAtlas(
+	  			mv.assets[faceId], 
+	  			mv.assets["spritesheet.json"],
+	  			mv.assets["spritesheet.png"], 96, 96);
+
+	let faceset = mv.sprite(faceFrame);  				
+
+
+	let npc = mv.npc(npcFrame, -30, 320, faceset, moodSprite);
+
+
+	npc.sound = mv.assets["cursor-fx.ogg"];
+
+	innScene.addChild(npc);
+
+	npc.show(npc.states.left);
+
+	npc.name = name[nameRandomNum];
+
+	npc.scaleX = 1.2;
+
+	npc.scaleY = 1.2;
+
+	npc.orderText = orderText[textRandomNum];
+
+	npc.annoyText = annoyText[textRandomNum];
+
+	npc.endText = endText[textRandomNum];
+
+
+
+
+	for(let i = 0; i <2; i ++) {
+
+		let orderRandomNum = mv.randomInt(0, currentLevel.materials.length -1);
+
+		let orderQuantity = mv.randomInt(1, currentLevel.maxOrder);
+
+		let order = mv.group();
+
+		Object.assign(order, currentLevel.materials[orderRandomNum]);
+
+		order.quantity = orderQuantity;
+
+		order.id = orderRandomNum;
+
+		npc.price += order.price * orderQuantity;
+
+		npc.orders.push(order);
+
+		npc.orderText += orderQuantity + " " + order.name + ", ";
+
+	}
+
+	npc.price = parseFloat(npc.price.toFixed(1));
+
+	npc.orderText = npc.orderText.slice(0, npc.orderText.length - 2);
+
+	return npc;
+
+}
+
+function displayDialog(text, npc, dialogName, scene, buttonNode, method){
+
+	let dialog = dialogArray.children.find( element => element.name === dialogName);
 
 	if(dialog){
 
@@ -935,9 +1920,18 @@ function displayInstruct(scene, arrayText, dialogName, firstTime, timeout = 400)
 
 		let speechPanel = mv.sprite(mv.assets["speech-panel"]);
 
-		speechPanel.setSize(920, 200);
+		speechPanel.setSize(896, 192);
 
-		scene.putCenter(speechPanel, 0, 200);
+		scene.putCenter(speechPanel, 0, 193);
+
+
+		let faceset = npc.faceset
+
+		faceset.setSize(140,140);
+
+		speechPanel.putCenter(faceset, -320, 0);
+
+		if(npc.moodBar < 40) npc.faceset.gotoAndStop(1);
 
 
 		let closeBtn = mv.button(mv.assets["no"]);
@@ -973,157 +1967,268 @@ function displayInstruct(scene, arrayText, dialogName, firstTime, timeout = 400)
 		closeBtn.sound = mv.assets["cursor-fx.ogg"]; 
 
 
-		let mentor = mv.sprite(mv.assets["main-mentor"]);
+		let dialogText = mv.text(text, "22px Georgia", "#24313c", 268, 460);
 
-		speechPanel.putTop(mentor, -300, 10);
+		dialogText.align = "left";
 
 
-		let backBtn = mv.button(mv.assets["back"], 776, 544);
+		dialog.add(speechPanel, closeBtn, npc.faceset, dialogText);
 
-		backBtn.setSize(55,57);
 
-		backBtn.release = () => {
+		if(buttonNode && method){
 
-			let index = arrayText.indexOf(currentTextRaw);
+			let actionBtn = mv.button(mv.assets["yellow-button"], 704, 528);
 
-			if(index > 0){
-				index --;
+			actionBtn.setSize(164,58);
+
+			actionBtn.sound = mv.assets["ok-fx.ogg"];
+
+
+			let actionNode = mv.text(buttonNode, "22px KomikaAxis", "white", 86, 18);
+
+			actionBtn.addChild(actionNode);
+
+			actionBtn.release = () =>{
+
+				dialog.children.forEach( element => {
+
+					if (element.sound){
+						if(element.interactive === true){
+							element.interactive = false;
+						}
+					}
+				});
+
+				method(dialog, npc);
 			}
 
-			currentTextRaw = arrayText[index];
-
-			currentText.setContent( currentTextRaw, 56, 40);
-
-			checkButton();
+			dialog.addChild(actionBtn);
 
 		}
 
-		backBtn.sound = mv.assets["cursor-fx.ogg"];
+		dialogArray.addChild(dialog);
 
+		return dialog;
 
-		let nextBtn = mv.button(mv.assets["next"], 850, 544);
-
-		nextBtn.setSize(55,57);
-
-		nextBtn.release = () => {
-
-			let index = arrayText.indexOf(currentTextRaw);
-
-			if(index < arrayText.length - 1){
-				index ++;
-			}
-
-			currentTextRaw = arrayText[index];
-
-			currentText.setContent( currentTextRaw, 56, 40);
-
-			checkButton();
-
-		}
-
-		nextBtn.sound = mv.assets["cursor-fx.ogg"];
-		
-
-		let currentTextRaw = arrayText[0];
-
-
-		let currentText = mv.multiText(currentTextRaw, "20px Georgia", "#24313c", 56, 40, 30);
-
-		currentText.setAlign("left");
-
-
-		speechPanel.addChild(currentText);
-
-		function checkButton(){
-
-			if(currentTextRaw === arrayText[0]){
-
-				if(backBtn.interactive === true) backBtn.interactive = false;
-
-				backBtn.visible = false;
-
-			}
-			else if(currentTextRaw === arrayText[arrayText.length - 1]){
-
-				if(nextBtn.interactive === true) nextBtn.interactive = false;
-
-				nextBtn.visible = false;
-
-			}
-			else{
-
-				backBtn.visible = true;
-
-				nextBtn.visible = true;
-
-				if(backBtn.interactive === false){
-					backBtn.interactive = true;
-				}
-
-
-				if(nextBtn.interactive === false){
-					nextBtn.interactive = true;
-				}
-
-			}
-
-		};
-
-		checkButton();
-
-
-		if(firstTime){
-
-			speechPanel.alpha = 0;
-
-			mentor.alpha = 0;
-
-			currentText.alpha = 0;
-
-			nextBtn.interactive = false;
-
-			closeBtn.interactive = false;
-
-			nextBtn.alpha = 0;
-
-			closeBtn.alpha = 0;
-
-
-			mv.wait(timeout).then( () =>{
-
-				mv.fadeIn(mentor,  30);
-
-				mv.slide(mentor, mentor.x, speechPanel.y - mentor.height, 30);
-
-				mv.fadeIn(speechPanel, 30);
-
-				mv.fadeIn(currentText, 30);
-
-				mv.fadeIn(closeBtn, 30);
-
-				mv.fadeIn(nextBtn, 30);
-
-				mv.assets["warn-fx.wav"].play();
-
-			})
-			.then ( () => {
-
-				nextBtn.interactive = true;
-
-				closeBtn.interactive = true;
-
-			});
-
-		}
-
-		dialog.add(mentor, speechPanel, closeBtn, nextBtn, backBtn);
-
-		scene.addChild(dialog);
-	}
+	}	
 
 }
 
-function prepareInnHouse(){
+function displayCalculation(dialog, npc){
+
+
+	let panel = innScene.children.find( element => element.name === npc.name + "panel");
+
+	if(panel) {
+
+		panel.children.forEach( element => {
+
+
+			if (element.sound) {
+				if(element.interactive === false){
+					element.interactive = true;
+				}
+			}
+
+		});
+
+		panel.visible = true;
+
+		let guisystem = new CASTORGUI.GUIManager(mv.canvas);
+
+		let optionsInput = 
+		{w: 373,
+		 h: 25, 
+		 x: 268, 
+		 y: 242,
+		 placeholder: "  Enter your calculation here..",
+		 zIndex: 1000};
+
+		 let input = new CASTORGUI.GUITextfield("input", optionsInput, guisystem);
+
+	}	
+
+	else{
+
+		let panel = mv.sprite(mv.assets["confirm-panel"]);
+
+		panel.name = npc.name + "panel";
+
+		panel.setSize(500,249);
+
+
+		let closeBtn = mv.button(mv.assets["no"]);
+
+		closeBtn.setSize(50,50);
+
+		panel.putTop(closeBtn, panel.width/2 - closeBtn.width/2 + 15, closeBtn.height/2 + 20)
+
+		closeBtn.sound = mv.assets["cancel-fx.ogg"];
+
+
+		closeBtn.release = () => {
+
+			panel.visible = false;
+
+			panel.children.forEach( element => {
+
+				if (element.sound){
+					if(element.interactive === true){
+						element.interactive = false;
+					}
+				}
+			});
+
+			input.dispose();
+
+			dialog.children.forEach( element => {
+
+				if (element.sound){
+					if(element.interactive === false){
+						element.interactive = true;
+					}
+				}
+			});
+		}
+
+		let priceNode = "Let's calculate how much the customer has to pay:/n";
+
+		npc.orders.forEach( order => {
+			priceNode += "each " + order.name + " will cost " + order.price + " euros,/nand "
+		})
+
+		priceNode = priceNode.slice(0, priceNode.length - 8);
+
+		priceNode += "/nWhen you finish, press the Enter key."
+
+		let textPrice = mv.multiText(priceNode, "18px Georgia", "#24313c", 40, 32, 25);
+
+		textPrice.setAlign("left");
+
+
+		let guisystem = new CASTORGUI.GUIManager(mv.canvas);
+
+		let optionsInput = 
+		{w: 373,
+		 h: 25, 
+		 x: 268, 
+		 y: 242,
+		 placeholder: "  Enter your calculation here.."};
+
+		let input = new CASTORGUI.GUITextfield("input", optionsInput, guisystem);
+
+
+		let enterKey = mv.keyboard(13);
+
+		let firstCode = 48;
+
+		let value = "";
+
+		for(let i = 0; i < 10; i++){
+
+			let numberKey = mv.keyboard(firstCode);
+
+			numberKey.number = i;
+
+			numberKey.press = () =>{
+
+				value += String(numberKey.number);
+				input.setValue(value);
+			}
+
+			firstCode ++;
+		}
+
+		let periodKey = mv.keyboard (190);
+
+		periodKey.string = ".";
+
+		periodKey.press = () => {
+			value += periodKey.string;
+			input.setValue(value);
+		}
+
+		let backspaceKey = mv.keyboard(8);
+
+		backspaceKey.press = () => {
+			if(value.length > 0){
+				value = value.slice(0, value.length - 1);
+				input.setValue(value);
+			}
+			
+		}
+
+
+		let incorrectNode = mv.text(
+			"Incorrect answer. Please try again.", 
+			"16px Georgia", "red", 40, 192);
+
+		incorrectNode.align = "left";
+
+		panel.add(closeBtn, textPrice);
+
+		innScene.putCenter(panel, 0, -100);
+
+		innScene.addChild(panel);
+
+		incorrectNode.visible = false;
+
+
+
+		enterKey.press = () => {
+			if(input.getValue()){
+				let value = parseFloat(input.getValue());
+
+				console.log(value);
+
+				console.log(npc.price);
+
+				if(value !== npc.price){
+
+					incorrectNode.visible = true;
+
+					mv.assets["warn-fx.wav"].play();
+
+				}
+				else{
+					panel.visible = false;
+
+					dialog.visible = false;
+
+					incorrectNode.visible = false;
+
+
+					panel.children.forEach( element => {
+
+						if (element.sound){
+							if(element.interactive === true){
+								element.interactive = false;
+							}
+						}
+					});
+
+					input.dispose();
+
+
+					npc.tasks.calculatePrice = true;
+
+
+				}
+			}
+			
+		}
+	}
+
+	
+
+	
+}
+
+function displayInventory(){
+
+}
+
+function displayOrder(){
 
 }
 

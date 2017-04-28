@@ -181,4 +181,45 @@ function rectangleCollision(
   return collision;
 }
 
+/*
+Detect collision between 2 rectangular sprite
+*/
+
+export
+function hitTestRectangle(r1, r2, global = false) {
+  let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+
+  hit = false;
+
+  //Calculate the distance vector
+  if (global) {
+    vx = (r1.gx + r1.halfWidth) - (r2.gx + r2.halfWidth);
+    vy = (r1.gy + r1.halfHeight) - (r2.gy + r2.halfHeight);
+  } else {
+    vx = r1.centerX - r2.centerX;
+    vy = r1.centerY - r2.centerY;
+  }
+
+  //Figure out the combined half-widths and half-heights
+  combinedHalfWidths = r1.halfWidth + r2.halfWidth;
+  combinedHalfHeights = r1.halfHeight + r2.halfHeight;
+
+  //Check for a collision on the x axis
+  if (Math.abs(vx) < combinedHalfWidths) {
+
+    if (Math.abs(vy) < combinedHalfHeights) {
+
+      hit = true;
+    } else {
+
+      hit = false;
+    }
+  } else {
+
+    hit = false;
+  }
+
+  return hit;
+}
+
 

@@ -61,6 +61,7 @@ export function contain (sprite, bounds, bounce = false, extra = undefined){
       height = bounds.height;
 
 
+  let collision;
 
   //Left
   if (sprite.x < x) {
@@ -68,31 +69,34 @@ export function contain (sprite, bounds, bounce = false, extra = undefined){
 
     if(sprite.mass) sprite.vx /= sprite.mass;
     sprite.x = x;
+    collision = "left";
   }
   //Top
   if (sprite.y < y) {
     if (bounce) sprite.vy *= -1;
     if(sprite.mass) sprite.vy /= sprite.mass;
     sprite.y = y;
+    collision = "top";
   }
   //Right
   if (sprite.x + sprite.width > width) {
     if (bounce) sprite.vx *= -1;
     if(sprite.mass) sprite.vx /= sprite.mass;
     sprite.x = width - sprite.width;
+    collision = "right";
   }
   //Bottom
   if (sprite.y + sprite.height > height) {
     if (bounce) sprite.vy *= -1;
     if(sprite.mass) sprite.vy /= sprite.mass;
     sprite.y = height - sprite.height;
+    collision = "bottom";
   }
 
-  //The `extra` function runs if there was a collision
-  //and `extra` has been defined
-  if (collision && extra) extra(collision);
-};
 
+  //Return the `collision` object
+  return collision;
+};
 /*
 Find the distance in pixels between two sprites.
 */
@@ -103,17 +107,6 @@ export function distance(s1, s2) {
   return Math.sqrt(vx * vx + vy * vy);
 }
 
-/*
-Create random number
-*/
-
-export let randomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-export let randomFloat = (min, max) => {
-  return min + Math.random() * (max - min);
-}
 
 /*
 Move sprite or multiple sprite
