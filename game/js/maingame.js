@@ -24,6 +24,8 @@ mv.start();
 let villageMusic, careerHouse, innHouse, cookingHouse, 
 hospitalHouse, currentHouse, player, uiBar;
 
+let savedInn, savedHospital, savedCooking, savedHouse;
+
 currentHouse = null;
 
 
@@ -113,6 +115,12 @@ function initialize(){
 
 	careerHouse = [innHouse, cookingHouse, hospitalHouse];
 
+	savedInn = {};
+
+	savedHospital = {};
+
+	savedCooking = {};
+
 	//Load user previous game data
 
 	mv.loadData()
@@ -121,12 +129,17 @@ function initialize(){
 		let playerData = data;
 
 		if (playerData){
-			if(!playerData.house){
-				playerData.house = careerHouse;
+			if(playerData.house){
+
+				let house = playerData.house
+
+				Object.assign(innHouse, house[0]);
+				Object.assign(hospitalHouse, house[1]);
+				Object.assign(cookingHouse, house[2]);
+
 			}
-/*			else{
-				careerHouse = Object.assign(careerHouse, playerData.house);
-			}*/
+
+			console.log(innHouse);
 
 			playerData.gold = Number(playerData.gold);
 
@@ -211,22 +224,7 @@ function menu(){
 
 			if(player.characterId){
 
-				window.setInterval(function(){
-
-					player.house = careerHouse;
-
-					mv.saveData(player);
-
-				}, 300000);
-
-				window.onbeforeunload = () =>{
-
-					player.house = careerHouse;
-
-					mv.saveData(player);
-
-					return "We are saving game data now. Please wait a few seconds and retry.";
-				}
+				saving();				
 
 				menuScene.visible = false;
 
@@ -245,8 +243,6 @@ function menu(){
 		};
 
 	}
-
-	
 	
 }
 
@@ -294,26 +290,7 @@ function createCharacter(menuScene){
 
 			player.characterId = currentChar.name;
 
-			window.setInterval(function(){
-				
-				player.house = careerHouse;
-
-				mv.saveData(player);
-
-			}, 300000);
-
-			window.onbeforeunload = (e) =>{
-
-				player.house = careerHouse;
-
-				mv.saveData(player);
-
-				let dialog = "We are saving game data now. Please wait a few seconds and retry.";
-
-				e.returnValue = dialog;
-
-				return dialog;
-			}
+			saving();
 
 			menuScene.visible = false;
 
@@ -428,6 +405,8 @@ function createCharacter(menuScene){
 			char.gotoAndStop(1);
 
 			char.visible = false;
+
+			char.name = charId;
 
 			charArray.push(char);
 
@@ -1489,6 +1468,16 @@ function prepareHouse(){
 	  		"Hi, " + player.name + "! Welcome to Inn House !" + 
 	  		"/nAs you are new here, I will be your mentor.",
 
+	  		"First, to move your character, use the W A S D key./n" +
+	  		"Then, your job is to serve the customers./n"+
+	  		"When they come in, click at them to get their orders./n",
+
+	  		"After that, click the Calculate button to calculate how much/n"+
+	  		" the customers have to pay. You can do it many times, but be sure to be quick./n",
+
+	  		"If the customer's mood turns to angry state, they will leave the house./n" +
+	  		"The more customers you serve, the more gold and skill points you will get.",
+
 	  		"If you need any help, just click the Help icon on the top right of the screen./n" +
 	  		"I will be right there.",
 
@@ -1508,6 +1497,9 @@ function prepareHouse(){
 	  		displayInstruct(innScene, arrayText, "innInstruct", true, 0,  mv.assets["inn-mentor"]).then( () =>{
 	  			mv.state = innGame;
 	  		})
+		}
+		else{
+			mv.state = innGame;
 		}
 
 
@@ -1783,7 +1775,7 @@ function createNPC(){
 					"Yummy, yummy. Thanks a lot.",
 					"Thank you. You are very nice. I will come again.",
 					"Thank you.",
-					"So quick. Good job. Thank you very much.",
+					"Good job. Many thanks.",
 					"Thanks a lot. Good bye.",
 					"I love the smell. Yummy. Thank you very much."] ;
 
@@ -2234,3 +2226,79 @@ function displayOrder(){
 
 
 
+function saving(){
+
+	window.setInterval(function(){
+
+		Object.assign(savedInn, {
+					chosen : innHouse.chosen, 
+					currentLevel: innHouse.currentLevel,
+					skillPoint: innHouse.skillPoints, 
+					currentFrequency: innHouse.currentFrequency, 
+					currentRequiredPoints: innHouse.currentRequiredPoints}
+					);
+
+				Object.assign(savedHospital, {
+					chosen : hospitalHouse.chosen, 
+					currentLevel: hospitalHouse.currentLevel,
+					skillPoint: hospitalHouse.skillPoints, 
+					currentFrequency: hospitalHouse.currentFrequency, 
+					currentRequiredPoints: hospitalHouse.currentRequiredPoints}
+					);
+
+				Object.assign(savedCooking, {
+					chosen : cookingHouse.chosen, 
+					currentLevel: cookingHouse.currentLevel,
+					skillPoint: cookingHouse.skillPoints, 
+					currentFrequency: cookingHouse.currentFrequency, 
+					currentRequiredPoints: cookingHouse.currentRequiredPoints}
+					);
+
+		savedHouse = [savedInn, savedHospital, savedCooking]
+
+		player.house = savedHouse;
+
+		mv.saveData(player);
+
+		console.log(savedHouse);
+
+	}, 30000);
+
+	window.onbeforeunload = () =>{
+
+		Object.assign(savedInn, {
+			chosen : innHouse.chosen, 
+			currentLevel: innHouse.currentLevel,
+			skillPoint: innHouse.skillPoints, 
+			currentFrequency: innHouse.currentFrequency, 
+			currentRequiredPoints: innHouse.currentRequiredPoints}
+			);
+
+		Object.assign(savedHospital, {
+			chosen : hospitalHouse.chosen, 
+			currentLevel: hospitalHouse.currentLevel,
+			skillPoint: hospitalHouse.skillPoints, 
+			currentFrequency: hospitalHouse.currentFrequency, 
+			currentRequiredPoints: hospitalHouse.currentRequiredPoints}
+			);
+
+		Object.assign(savedCooking, {
+			chosen : cookingHouse.chosen, 
+			currentLevel: cookingHouse.currentLevel,
+			skillPoint: cookingHouse.skillPoints, 
+			currentFrequency: cookingHouse.currentFrequency, 
+			currentRequiredPoints: cookingHouse.currentRequiredPoints}
+			);
+
+		savedHouse = [savedInn, savedHospital, savedCooking]
+
+		player.house = savedHouse;
+
+		mv.saveData(player);
+
+		console.log(savedHouse);
+
+		return "We are saving game data now. Please wait a few seconds and retry.";
+	}
+
+}

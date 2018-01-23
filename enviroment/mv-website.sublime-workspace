@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"align",
+				"align-items"
+			],
+			[
+				"permu",
+				"permuWithout"
+			],
+			[
+				"getEl",
+				"getElementById	( elementId: DOMString ): Element Document"
+			],
+			[
+				"skill",
+				"skillPoints"
+			],
+			[
 				"offs",
 				"offsetX"
 			],
@@ -148,26 +164,18 @@
 	"buffers":
 	[
 		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
+			"file": "/E/client/Movie-Animation-Project/nk-cinema/index.html",
 			"settings":
 			{
-				"buffer_size": 41175,
+				"buffer_size": 1185,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
+			"file": "/E/client/Movie-Animation-Project/nk-cinema/css/main.css",
 			"settings":
 			{
-				"buffer_size": 1922,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
-			"settings":
-			{
-				"buffer_size": 8094,
+				"buffer_size": 3790,
 				"line_ending": "Windows"
 			}
 		}
@@ -180,9 +188,33 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "PH",
+		"last_filter": "pack",
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
 			[
 				"PH",
 				"Set Syntax: PHP"
@@ -190,10 +222,6 @@
 			[
 				"JAV",
 				"Set Syntax: JavaScript"
-			],
-			[
-				"php",
-				"Set Syntax: PHP"
 			],
 			[
 				"jav	",
@@ -208,16 +236,8 @@
 				"Package Control: Install Package"
 			],
 			[
-				"java",
-				"Set Syntax: JavaScript"
-			],
-			[
 				"task",
 				"Set Syntax: Tasks"
-			],
-			[
-				"html",
-				"Set Syntax: HTML"
 			],
 			[
 				"remove",
@@ -265,39 +285,91 @@
 	},
 	"expanded_folders":
 	[
-		"/E/SOFTWARE PROJECT 1/math_village",
 		"/E/SOFTWARE PROJECT 1/math_village/backend",
+		"/E/SOFTWARE PROJECT 1/math_village/css",
 		"/E/SOFTWARE PROJECT 1/math_village/game",
 		"/E/SOFTWARE PROJECT 1/math_village/game/css",
-		"/E/SOFTWARE PROJECT 1/math_village/game/font",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/sounds",
 		"/E/SOFTWARE PROJECT 1/math_village/js"
 	],
 	"file_history":
 	[
-		"/E/SOFTWARE PROJECT 1/math_village/game/game.php",
+		"/E/client/SOFTAGRAM/backup/backup-html-css.html",
+		"/E/SOFTWARE PROJECT 1/math_village/js/main.js",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/css/demo.css",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/js/glitchFx.js",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/js/dil.js",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/index.html",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/css/component.css",
+		"/E/client/Movie-Animation-Project/Codrops/SlicedDualImageLayout/SlicedDualImageLayout/js/demo.js",
+		"/E/client/Movie-Animation-Project/nk-cinema/package.json",
+		"/C/Users/OS/Documents/math.html",
+		"/C/Users/OS/Documents/localization/vietnamese.xml",
+		"/E/client/SOFTAGRAM/LANDING PAGE/HoverEffectIdeas/HoverEffectIdeas/css/set2.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/HoverEffectIdeas/HoverEffectIdeas/index2.html",
+		"/E/client/pomelo cos/edit website/edit website/4 blog tips/blog banner/css/style.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/HoverEffectIdeas/HoverEffectIdeas/css/demo.css",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/sound.js",
+		"/E/client/pomelo cos/edit website/edit website/4 blog tips/blog banner/banner.html",
+		"/C/Users/OS/Downloads/2016 Stack Overflow Survey Results/2016 Stack Overflow Survey Results/READ_ME_-_The_Public_2016_Stack_Overflow_Developer_Survey_Results.txt",
+		"/E/client/SOFTAGRAM/LANDING PAGE/ProgressButtonStyles/ProgressButtonStyles/css/component.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/ProgressButtonStyles/ProgressButtonStyles/js/progressButton.js",
+		"/E/SOFTWARE PROJECT 1/math_village/js/jquery.fullpage.min.js",
+		"/E/SOFTWARE PROJECT 1/math_village/css/jquery.fullpage.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/ProgressButtonStyles/ProgressButtonStyles/js/modernizr.custom.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/MultiLevelPushMenu/pushmenu.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/ProgressButtonStyles/ProgressButtonStyles/index.html",
+		"/E/client/SOFTAGRAM/LANDING PAGE/PricingTablesInspiration/PricingTablesInspiration/css/icons.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/PricingTablesInspiration/PricingTablesInspiration/css/demo.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/PricingTablesInspiration/PricingTablesInspiration/css/component.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/AnimatedBorderMenus/AnimatedBorderMenus/index5.html",
+		"/E/client/SOFTAGRAM/LANDING PAGE/MultiLevelPushMenu/MultiLevelPushMenu/index3.html",
+		"/C/Users/OS/Downloads/modernizr-custom.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CaptionHoverEffects/CaptionHoverEffects/js/toucheffects.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CaptionHoverEffects/CaptionHoverEffects/js/modernizr.captionhover.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/ProgressButtonStyles/ProgressButtonStyles/js/classie.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/MultiLevelPushMenu/MultiLevelPushMenu/js/mlpushmenu.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/MultiLevelPushMenu/MultiLevelPushMenu/index.html",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CaptionHoverEffects/CaptionHoverEffects/css/component.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CaptionHoverEffects/CaptionHoverEffects/index3.html",
+		"/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
+		"/E/SOFTWARE PROJECT 1/math_village/index.php",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CreativeButtons/CreativeButtons/css/component.css",
+		"/E/client/SOFTAGRAM/LANDING PAGE/PricingTablesInspiration/PricingTablesInspiration/index.html",
+		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/autoHeight.html",
+		"/E/web/valentine/valentine/index.html",
+		"/E/client/SOFTAGRAM/LANDING PAGE/bigtext.js",
+		"/E/client/SOFTAGRAM/LANDING PAGE/CreativeButtons/CreativeButtons/index.html",
+		"/E/client/SOFTAGRAM/backup/html backup",
+		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/navigationH.html",
+		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/apple.html",
+		"/E/web/valentine/fullPage.js-master/fullPage.js-master/examples/activeSlide.html",
+		"/E/SOFTWARE PROJECT 1/math_village/signup.html",
+		"/E/client/SOFTAGRAM/backup/functions.php",
+		"/E/SOFTWARE PROJECT 1/math_village/login.html",
+		"/E/SOFTWARE PROJECT 1/math_village/index.html",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
+		"/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
+		"/E/web/SimpleDropDownEffects/SimpleDropDownEffects/index6.html",
+		"/E/web/SimpleDropDownEffects/SimpleDropDownEffects/css/style5.css",
+		"/E/web/SimpleDropDownEffects/SimpleDropDownEffects/js/jquery.dropdown.js",
+		"/E/web/SimpleDropDownEffects/SimpleDropDownEffects/css/style6.css",
+		"/E/web/SimpleDropDownEffects/SimpleDropDownEffects/css/common.css",
+		"/E/client/SOFTAGRAM/STORE WEBSITE/header-subpage.php",
 		"/E/SOFTWARE PROJECT 1/math_village/game/css/styles.css",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/utilities.js",
+		"/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
+		"/E/SOFTWARE PROJECT 1/math_village/game/game.php",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/setup.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
+		"/E/SOFTWARE PROJECT 1/math_village/game/js/utilities.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/interactive.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/collision.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/display.js",
 		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/CanvasInput/CanvasInput.js",
 		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/agd/library/collision.js",
 		"/E/SOFTWARE PROJECT 1/LIBRARY/GAME LIBRARY/agd/library/utilities.js",
-		"/E/SOFTWARE PROJECT 1/math_village/backend/saveload.php",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
-		"/E/SOFTWARE PROJECT 1/math_village/js/main.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/sound.js",
-		"/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/js/ultitilies.js",
 		"/E/SOFTWARE PROJECT 1/math_village/game/plugins/traceur-compiler/README.md",
-		"/E/SOFTWARE PROJECT 1/math_village/css/mainstyle.css",
-		"/E/SOFTWARE PROJECT 1/math_village/index.php",
-		"/E/SOFTWARE PROJECT 1/math_village/login.html",
-		"/E/SOFTWARE PROJECT 1/math_village/signup.html",
 		"/E/SOFTWARE PROJECT 1/math_village/contact.php",
 		"/E/SOFTWARE PROJECT 1/math_village/backend/submit.php",
 		"/E/SOFTWARE PROJECT 1/math_village/js/login.js",
@@ -319,13 +391,11 @@
 		"/E/SOFTWARE PROJECT 1/math_village/game js/sound.js",
 		"/E/SOFTWARE PROJECT 1/math_village/backend/logout.php",
 		"/E/SOFTWARE PROJECT 1/math_village/backend/connection.php",
-		"/E/SOFTWARE PROJECT 1/math_village/css/responsive.css",
 		"/E/SOFTWARE PROJECT 1/math_village/logout.php",
 		"/E/SOFTWARE PROJECT 1/math_village/connection.php",
 		"/E/SOFTWARE PROJECT 1/math_village/submit.php",
 		"/E/SOFTWARE PROJECT 1/math_village/validate.php",
 		"/E/SOFTWARE PROJECT 1/math_village/session.php",
-		"/E/SOFTWARE PROJECT 1/math_village/index.html",
 		"/E/SOFTWARE PROJECT 1/math_village/package.json",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
@@ -350,37 +420,11 @@
 		"/C/Users/OS/Documents/javascript ex/GunCanvas.sublime-project",
 		"/C/Users/OS/Documents/javascript ex/GunCanvas.html",
 		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/Default (Windows).sublime-keymap",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/add_customers.php",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/ex2.sublime-workspace",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Settings/SideBarEnhancements.json",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/update_customer.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/menu.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/logout.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/login.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/insert_customers.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/index.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/forms.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/footer.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/delete_customer.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/customers.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/connection.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/cats.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/add_customers.sublime-workspace",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/user.php",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/ex2.sublime-project",
-		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/sql.php",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/JSON.sublime-settings",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/Word Highlight.sublime-settings",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/WordHighlight/Word Highlight.sublime-settings",
-		"/C/Users/OS/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
-		"/C/Users/OS/Documents/javascript ex/DateMethodsMore.js"
+		"/C/Users/OS/Documents/DATABASER EX/CLASS EXAMPLE/example2/add_customers.php"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -394,6 +438,102 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"“",
+			"++;\n",
+			"l",
+			">\n",
+			"rFact",
+			"h",
+			">\n",
+			"even",
+			".frontpage-feature:nth",
+			"media",
+			"-fig",
+			".grid",
+			"more-of-us",
+			"more",
+			"frontpage-header",
+			"#panel-1648-0-0-0{",
+			"#panel-1651-0-0-0{",
+			"#panel-1619-0-0-0 {",
+			"#panel-1176-0-0-0{",
+			"#panel-1176-0-0-0",
+			"See how it works",
+			"works",
+			"Explore",
+			"style=\"text-align: center;\"",
+			"benefit",
+			"0-1",
+			"1",
+			"#panel-1619-0-0-1, #panel-1176-0-0-1,  #panel-1648-0-0-1,  #panel-1651-0-0-1, ",
+			":before",
+			"!important",
+			"clear",
+			".sub-header-img",
+			"icon icon-arrow-left",
+			"cs-style-3",
+			">\n",
+			"\"></",
+			"$",
+			"></",
+			"$",
+			"rab",
+			"store",
+			"--rabten",
+			"-rabten",
+			"--rabten",
+			"class=\"alignnone wp-image-",
+			"Hospital",
+			"hospital",
+			"Hospital",
+			"hospital",
+			"Hospital",
+			"hospital",
+			"Hospital",
+			"hospital",
+			"Hospital",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"in",
+			"In",
+			"in",
+			"In",
+			"in",
+			"In",
+			"in",
+			"In",
+			"in",
+			"In",
+			"Inn",
+			"innHouse",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"console.log",
+			"saveData",
+			"savedHouse",
+			"\"Game saved\"",
+			"save",
+			"loadDa",
+			"innHouse",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"inn",
+			"Inn",
+			"careerHouse",
 			"displayInstruc",
 			"helpClose",
 			"InnInstruct",
@@ -425,103 +565,7 @@
 			"map",
 			"alpha",
 			"character",
-			"cha",
-			"randomInt",
-			"sprite(",
-			"character",
-			"new Sprite",
-			"currentLv",
-			"currentLevel",
-			"bar",
-			"spritesheet",
-			"Panel",
-			"Arrow",
-			"materials",
-			"elf",
-			"map",
-			"false",
-			"offSet",
-			"helpBtn",
-			"backMenuBtn",
-			"setSize",
-			"sprite",
-			"skillPoints",
-			"menuScene",
-			"Tahoma",
-			"panel",
-			"okText",
-			"sprite",
-			"this",
-			"sprite",
-			"play",
-			"loadingText",
-			"player",
-			"mv.playerData",
-			"assets",
-			".png",
-			"Cooking",
-			"();\n",
-			"background",
-			"file",
-			"library",
-			"id",
-			"index.html",
-			">\n",
-			"text-danger",
-			"isset",
-			"Error in processing data. Please return later.",
-			"pwd",
-			"username",
-			"$username",
-			"include",
-			";\n",
-			"$result",
-			"	\n",
-			"u",
-			"signup",
-			"form",
-			"background",
-			">\n",
-			"login",
-			"signup",
-			".form",
-			" .",
-			"$br",
-			"$bold",
-			"$normal",
-			"$thin",
-			"$white",
-			" $form-bg",
-			"$body-bg",
-			"$gray",
-			"$gray-light",
-			"-dark",
-			"$main",
-			"strong",
-			"</",
-			"value",
-			"top",
-			";\n",
-			"blue",
-			";\n",
-			"darkgrey",
-			"navbar",
-			"header",
-			";\n",
-			"margin",
-			"pad-",
-			"}\n",
-			"right",
-			"ul",
-			"navbar-coll",
-			"navbar-form",
-			"fadeIn",
-			"lg",
-			"h2",
-			"div",
-			">\n",
-			"mvlogo.png",
-			"p"
+			"cha"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -545,30 +589,30 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/maingame.js",
+					"file": "/E/client/Movie-Animation-Project/nk-cinema/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 41175,
+						"buffer_size": 1185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3517,
-								3440
+								15,
+								15
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2320.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -576,65 +620,33 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/player.js",
+					"file": "/E/client/Movie-Animation-Project/nk-cinema/css/main.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1922,
+						"buffer_size": 3790,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1412,
-								1412
+								456,
+								456
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/E/SOFTWARE PROJECT 1/math_village/game/js/tween.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8094,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8094,
-								8094
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2878.0,
+						"translation.y": 3128.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -642,7 +654,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 31.0
 	},
 	"input":
 	{
@@ -687,7 +699,7 @@
 	"project": "mv-website.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 58.0
 	},
 	"save_all_on_build": true,
 	"select_file":

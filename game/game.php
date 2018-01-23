@@ -2,6 +2,8 @@
 	session_start();
 
 	if(isset($_SESSION['username'])){
+		$username = (string)$_SESSION["username"];
+		echo "console.log(".$username.");";
 	}
 	else{
 		header("Location: ../login.html");
@@ -20,8 +22,6 @@
 
 	<!--styles-->
 	<link rel="stylesheet" href="css/styles.css">
-	<!--font-google-->
-	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
 	<script src="plugins/castorGUI.min.js"></script>
 
@@ -29,6 +29,7 @@
 </head>
 
 <body>
+
 	<div class="logo">
 	    <img alt="logo" src="../images/mvlogo.png">
 	</div>

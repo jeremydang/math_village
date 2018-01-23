@@ -11,7 +11,7 @@
 	    	try{
 	    		// Get user uid to access statistics table
 	    		$stmt=$conn->prepare("SELECT uid,firstname FROM UserAccount WHERE username=?");
-	    		$stmt->execute([$username]);
+	    		$stmt->execute([$_SESSION['username']]);
 	    		$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	    		// If found user in database
@@ -38,6 +38,7 @@
 		    				$playerData = compact('name', 'characterId', 'exp', 'gold', 'house');
 		    				
 		    				echo json_encode($playerData);
+
 		    			}
 
 		    			//If no game data found for this user -> initialize 
