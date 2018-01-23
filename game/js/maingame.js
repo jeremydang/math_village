@@ -1,5 +1,5 @@
 
-import {setup} from "js/setup";
+import {setup} from "/~t6dath00/mathvillage/game/js/setup";
 
 let mv = setup(
   960, 640, initialize, 
@@ -760,10 +760,9 @@ function enterVillage(){
 
 	}
 
-
-	
-
 }
+
+let star1, star2, star3;
 
 function displayDescription(house, villageScene){
 
@@ -800,27 +799,26 @@ function displayDescription(house, villageScene){
 
 		}
 
-
 		switch(house.difficulty){
 
 			case 3: 
 
-				let star1 = mv.sprite(mv.assets["star-fill"], 0, 160);
+				star1 = mv.sprite(mv.assets["star-fill"], 0, 160);
 
-				let star2 = mv.sprite(mv.assets["star-fill"], 100, 160);
+				star2 = mv.sprite(mv.assets["star-fill"], 100, 160);
 
-				let star3 = mv.sprite(mv.assets["star-fill"], 200, 160);
+				star3 = mv.sprite(mv.assets["star-fill"], 200, 160);
 
 
 				break;
 
 			case 2:	
 
-				let star1 = mv.sprite(mv.assets["star-fill"], 0, 150);
+				star1 = mv.sprite(mv.assets["star-fill"], 0, 150);
 
-				let star2 = mv.sprite(mv.assets["star-fill"], 100, 150);
+				star2 = mv.sprite(mv.assets["star-fill"], 100, 150);
 
-				let star3 = mv.sprite(mv.assets["star-empty"], 200, 150);
+				star3 = mv.sprite(mv.assets["star-empty"], 200, 150);
 
 				break;
 

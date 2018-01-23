@@ -33,11 +33,7 @@
 	<div class="logo">
 	    <img alt="logo" src="../images/mvlogo.png">
 	</div>
-
-	<script src="plugins/traceur-compiler/bin/traceur.js" type="text/javascript"></script>
-	<script src="plugins/traceur-compiler/src/bootstrap.js" type="text/javascript"></script>
-
+	<script src="plugins/rAF.js" type="text/javascript"></script>
 	<script src="js/maingame.js" type="module"></script>
-	<script>traceur.options.experimental = true;</script>
 </body>
 </html>

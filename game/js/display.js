@@ -7,11 +7,9 @@
 Asset loader
 */
 
-import "plugins/rAF";
+import {makeSound} from "/~t6dath00/mathvillage/game/js/sound";
 
-import {makeSound} from "js/sound";
-
-import {hitTestPoint} from "js/collision";
+import {hitTestPoint} from "/~t6dath00/mathvillage/game/js/collision";
 
 export let assets = {
 

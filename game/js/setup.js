@@ -2,13 +2,13 @@
 SETUP GAME
 */
 
-module player from "js/player";
-module utilities from "js/utilities";
-module sound from "js/sound";
-module display from "js/display";
-module collision from "js/collision";
-module interactive from "js/interactive";
-module tween from "js/tween";
+import * as player from './player';
+import * as utilities from './utilities';
+import * as sound from './sound';
+import * as display from './display';
+import * as collision from './collision';
+import * as interactive from './interactive';
+import * as tween from './tween';
 
 export class Setup {
   constructor(width = 960, height = 640, setup, assetsToLoad, load) {
